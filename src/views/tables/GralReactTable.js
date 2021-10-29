@@ -10,16 +10,31 @@ import {
     CardTitle,
     Row,
     Col,
+    CustomInput,
     Button,
   } from "reactstrap";
-import { isConstructorDeclaration } from 'typescript';
+
 const Botones = () => {
+
     const context = useContext(Context);
     const handleMenu = (cual) => {
-        console.log(context);
-        context.dispatch({ type: "SET_MENU_OLD", payload: context.state.menuSelected });
+        //console.log(context);
+        //context.dispatch({ type: "SET_MENU_OLD", payload: context.state.menuSelected });
 		context.dispatch({ type: "SET_MENU", payload: cual });
     }; 
+
+    const handleGrid = (cual2) => {
+        if (context.state.menuSelectedOld===41) {
+            context.dispatch({ type: "SET_MENU_OLD", payload: 42 });
+        }
+        else
+        {
+            context.dispatch({ type: "SET_MENU_OLD", payload: 41 });
+        }
+		//context.dispatch({ type: "SET_MENU", payload: cual });
+    }; 
+
+
     const [loading, setLoading] = useState(true);
     const [empresas, setEmpresas] = useState([]);
 
@@ -53,7 +68,13 @@ const Botones = () => {
                 <Button  onClick={() => handleMenu(3)}>Teck Stack</Button>
                 <Button  onClick={() => handleMenu(4)}>Digital Perfor.</Button>
                 <Button  onClick={() => handleMenu(5)}>Talent</Button>
-                <Button  onClick={() => handleMenu(6)}>G</Button>
+                <CustomInput
+                          type="switch"
+                          id="switch-3"
+                          label="Grid"
+                          onChange={() => handleGrid(7)}
+                          
+                        />
                 <select className="react-select" name="empresa" id="empresa" value={empresaSelected} onChange={handleEmpresaChange}>
                   {
                     empresas.map(e => <option key={`emp-${e.COMPANY_ID}`} value={e.COMPANY_ID}>{e.COMPANY_NAME}</option>)

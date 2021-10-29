@@ -10,20 +10,32 @@ import OverDigital from "./OverDigital";
 import OverTalent from "./OverTalent";
 import ReactTables from "./ReactTables"
 import GridInves from "./GridInves"
+import GridDigital from "./GridDigital"
+import GridTeckStack from "./GridTeckStack"
+import GridTalent from "./GridTalent"
 
 const Data = () => {
 	const context = useContext(Context);
 	console.log (context.state.menuSelected)
 	console.log (context.state.menuSelectedOld)
-	if (context.state.menuSelected===2) {
-		if (context.state.menuSelectedOld===6) {
-			return <GridInves />
-		}
-		else {
-			console.log ("entro al else de 2do if")
-			return <OverInves />
-		}
-	}
+	if (context.state.menuSelectedOld===42) {
+		switch (context.state.menuSelected) {
+			case 1:
+				return <ReactTables />
+			case 2:
+				return <GridInves />
+			case 3:
+				return <GridTeckStack />
+			case 4:
+				return <GridDigital />
+			case 5:
+				return <GridTalent />
+			
+			default:
+				return <div>Error en opción de menú</div>
+	};
+
+		 }
 	else {
 		switch (context.state.menuSelected) {
 		

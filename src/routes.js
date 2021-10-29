@@ -42,7 +42,7 @@ import User from "views/pages/User.js";
 import Login from "views/pages/Login.js";
 import Rtl from "views/pages/Rtl.js";
 import Lock from "views/pages/Lock.js";
-import OverTeck from "views/tables/OverTeck.js";
+import Compare from "views/compare/CompareGral"
 
 const routes = [
   {
@@ -53,6 +53,14 @@ const routes = [
     component: Dashboard,
     layout: "/admin",
   },
+  {
+    path: "/compare",
+    name: "Compare Companies",
+    rtlName: "لوحة القيادة",
+    icon: "tim-icons icon-bank",
+    component: Compare,
+    layout: "/admin",
+  },  
   {
     collapse: true,
     name: "Pages",
@@ -355,14 +363,6 @@ const routes = [
     rtlName: "التقويم",
     icon: "tim-icons icon-time-alarm",
     component: Calendar,
-    layout: "/admin",
-  },
-  {
-    path: "/overteck",
-    name: "Over TEck",
-    rtlName: "التقويم",
-    icon: "tim-icons icon-time-alarm",
-    component: OverTeck,
     layout: "/admin",
   },
 
