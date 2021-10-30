@@ -4,14 +4,8 @@ import Datastore from "./store/Datastore";
 import Data from "./Data";
 import Context from "./store/Context";
 import {
-    Card,
-    CardBody,
-    CardHeader,
-    CardTitle,
-    Row,
-    Col,
-    CustomInput,
     Button,
+    Input,
   } from "reactstrap";
 
 const Botones = () => {
@@ -23,13 +17,14 @@ const Botones = () => {
 		context.dispatch({ type: "SET_MENU", payload: cual });
     }; 
 
-    const handleGrid = (cual2) => {
-        if (context.state.menuSelectedOld===41) {
-            context.dispatch({ type: "SET_MENU_OLD", payload: 42 });
+    const handleGrid = (e) => {
+        console.log(e.target.checked,e.target.value);
+        if (e.target.checked===false) {
+            context.dispatch({ type: "SET_MENU_OLD", payload: 41 });
         }
         else
         {
-            context.dispatch({ type: "SET_MENU_OLD", payload: 41 });
+            context.dispatch({ type: "SET_MENU_OLD", payload: 42 });
         }
 		//context.dispatch({ type: "SET_MENU", payload: cual });
     }; 
@@ -68,13 +63,16 @@ const Botones = () => {
                 <Button  onClick={() => handleMenu(3)}>Teck Stack</Button>
                 <Button  onClick={() => handleMenu(4)}>Digital Perfor.</Button>
                 <Button  onClick={() => handleMenu(5)}>Talent</Button>
-                <CustomInput
+              { /* <CustomInput
                           type="switch"
                           id="switch-3"
                           label="Grid"
-                          onChange={() => handleGrid(7)}
-                          
-                        />
+                          onChange={handleGrid}
+                          value={context.state.menuSelectedOld === 42 ? "on":"off"}
+                        />*/}
+                    <Input type="checkbox" checked={context.state.menuSelectedOld === 42 ? true:false} onChange={handleGrid} />
+
+                    
                 <select className="react-select" name="empresa" id="empresa" value={empresaSelected} onChange={handleEmpresaChange}>
                   {
                     empresas.map(e => <option key={`emp-${e.COMPANY_ID}`} value={e.COMPANY_ID}>{e.COMPANY_NAME}</option>)

@@ -4,7 +4,7 @@ import Context from "./Context";
 const defaultValue = {
 	empresaSelected: 1,
 	menuSelected: 6 ,
-	menuSelectedOld : 41,
+	menuSelectedOld : 42,
 };
 
 const reducer = (state, action) => {

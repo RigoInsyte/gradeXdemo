@@ -16,7 +16,7 @@ import GridTalent from "./GridTalent"
 
 const Data = () => {
 	const context = useContext(Context);
-	console.log (context.state.menuSelected)
+	//console.log (context.state.menuSelected)
 	console.log (context.state.menuSelectedOld)
 	if (context.state.menuSelectedOld===42) {
 		switch (context.state.menuSelected) {

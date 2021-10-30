@@ -43,6 +43,8 @@ import Login from "views/pages/Login.js";
 import Rtl from "views/pages/Rtl.js";
 import Lock from "views/pages/Lock.js";
 import Compare from "views/compare/CompareGral"
+import Ranking from "views/ranking/RankingChart"
+
 
 const routes = [
   {
@@ -59,6 +61,14 @@ const routes = [
     rtlName: "لوحة القيادة",
     icon: "tim-icons icon-bank",
     component: Compare,
+    layout: "/admin",
+  },  
+  {
+    path: "/ranking",
+    name: "Ranking",
+    rtlName: "لوحة القيادة",
+    icon: "tim-icons icon-chart-bar-32",
+    component: Ranking,
     layout: "/admin",
   },  
   {

@@ -10,17 +10,11 @@ import {
     Nav,
     TabContent,
     TabPane,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    UncontrolledDropdown,
-    FormGroup,
-    Progress,
-    CustomInput,
     Row,
     Col,
   } from "reactstrap";
   import "./compareGral.css"
+import { isConstructorDeclaration } from 'typescript';
 
 //const CompareGral = () => {
   export default function CompareGral() {
@@ -33,7 +27,10 @@ import {
     const [selectcomp1, setSelectcomp1]= useState();
     const [selectcomp2, setSelectcomp2]= useState();
 
-    const [gridcompinves, setCompInvest]= useState();
+    const [selectcomp1Name, setSelectcomp1Name] = useState();
+    const [selectcomp2Name, setSelectcomp2Name] = useState();
+
+   
     const [titulo1, setTitulo1]= useState();
     const [titulo2, setTitulo2]= useState();
 
@@ -74,11 +71,11 @@ import {
 
   // compara investement
 
-	useEffect(() => {
+  const [gridcompinves, setCompInvest]= useState();
 		const getInves = async () => {
 			try {
         //let resp = await fetch(`http://localhost:9090/democompany/compareinvestment3?comp1=` + selectcomp1 + `&comp2=` + selectcomp2);
-        let resp = await fetch(`http://localhost:9090/democompany/compareinvestment3?comp1=124&comp2=125`);
+        let resp = await fetch(`http://localhost:9090/democompany/compareinvestment3?comp1=` + selectcomp1 + `&comp2=` + selectcomp2);
 			  resp = await resp.json();
         setCompInvest(resp.return);
         setTitulo1(resp.return[0].company_name1);    
@@ -88,16 +85,15 @@ import {
 				  console.error(error);
 			  }
 		};
-		getInves().then(() => setLoading(false));
-	}, []);
+	
 
-
-  const [gridcompdigi, setCompDigi]= useState();
-	useEffect(() => {
+    // grid compara digital 
+    const [gridcompdigi, setCompDigi]= useState();
 		const getDigital = async () => {
 			try {
+        console.log (selectcomp1);
         //let resp = await fetch(`http://localhost:9090/democompany/compareinvestment3?comp1=` + selectcomp1 + `&comp2=` + selectcomp2);
-        let resp = await fetch(`http://localhost:9090/democompany/compareinvestment3?comp1=1&comp2=2`);
+        let resp = await fetch(`http://localhost:9090/democompany/comparedigital?comp1=` + selectcomp1 + `&comp2=` + selectcomp2);
 			  resp = await resp.json();
         setCompDigi(resp.return);
         setTitulo1(resp.return[0].company_name1);    
@@ -107,8 +103,6 @@ import {
 				  console.error(error);
 			  }
 		};
-		getDigital().then(() => setLoading(false));
-	}, []);
 
 
 
@@ -135,6 +129,43 @@ import {
   }
   //  fin compare insvestment
 
+//  grilla tesk stack
+const [gridcompteck, setCompTesck]= useState();
+  const gridTeckStack = async () => {
+    try {
+      let resp = await fetch(`http://localhost:9090/democompany/compareteck?comp1=` + selectcomp1 + `&comp2=` + selectcomp2);
+      resp = await resp.json();
+      setCompTesck(resp.return);
+      setTitulo1(resp.return[0].company_name1);    
+      setTitulo2(resp.return[0].company_name2);    
+      console.log(resp.return)
+      } catch(error) {
+        console.error(error);
+      }
+  };
+
+// fin grilla tesk stac
+
+// grid talent
+const [gridcomptalent, setCompTalent]= useState();
+
+  const getTalent = async () => {
+    try {
+      console.log (selectcomp1);
+      //let resp = await fetch(`http://localhost:9090/democompany/compareinvestment3?comp1=` + selectcomp1 + `&comp2=` + selectcomp2);
+      let resp = await fetch(`http://localhost:9090/democompany/comparetalent?comp1=` + selectcomp1 + `&comp2=` + selectcomp2);
+      resp = await resp.json();
+      setCompTalent(resp.return);
+      setTitulo1(resp.return[0].company_name1);    
+      setTitulo2(resp.return[0].company_name2);    
+      console.log(resp.return)
+      } catch(error) {
+        console.error(error);
+      }
+  };
+// end grid talent 
+
+
     return (
         <div className="content">
             COMPARE COMPANIES
@@ -146,13 +177,13 @@ import {
                         {selectcomp1}
                         <br/>
                         <Select
-                          className="react-select info"
-                          classNamePrefix="react-select"
-                          name="selectcomp1"
-                          value={selectcomp1}
-                          onChange={e => setSelectcomp1(e.value)}
-                          options= {data1.map(e=>({label: e.COMPANY_NAME, value: e.COMPANY_ID}))}
-                          placeholder="Select company ..."
+                            className="react-select info"
+                            classNamePrefix="react-select"
+                            name="selectcomp1"
+                            value={selectcomp1}
+                            onChange={e => {setSelectcomp1(e.value);setSelectcomp1Name(e.label)}}
+                            options= {data1.map(e=>({label: e.COMPANY_NAME, value: e.COMPANY_ID}))}
+                            placeholder = {selectcomp1Name == "" ? "Single Select" : selectcomp1Name}
                         />
                         <br/>
                       </CardHeader>
@@ -169,9 +200,9 @@ import {
                           classNamePrefix="react-select"
                           name="selectcomp2"
                           value={selectcomp2}
-                          onChange={e => setSelectcomp2(e.value)}
+                          onChange={e => {setSelectcomp2(e.value);setSelectcomp2Name(e.label)}}
                           options= {data2.map(e=>({label: e.COMPANY_NAME, value: e.COMPANY_ID}))}                            
-                          placeholder="Single Select"
+                          placeholder = {selectcomp2Name == "" ? "Single Select" : selectcomp2Name}
                         />
                         <br/>
                       </CardHeader>
@@ -180,9 +211,11 @@ import {
                 <Col md="2">
                     <Card>
                       <CardHeader>
-                        <CardTitle tag="h4">Selected Company 2</CardTitle>
+                        <CardTitle tag="h4">Change selections</CardTitle>
                         <button onClick={clickBuscar}>Execute</button>
+                        <br/>
                       </CardHeader>
+                      <br/>
                     </Card>
                 </Col>    
 
@@ -199,9 +232,9 @@ import {
                     <NavLink
                       data-toggle="tab"
                       href="#pablo"
-                      className={horizontalTabs === "profile" ? "active" : ""}
+                      className={horizontalTabs === "investment" ? "active" : ""}
                       onClick={(e) =>
-                        changeActiveTab(e, "horizontalTabs", "profile")
+                        {changeActiveTab(e, "horizontalTabs", "investment"); getInves()}
                       }
                     >
                       Investment
@@ -211,9 +244,21 @@ import {
                     <NavLink
                       data-toggle="tab"
                       href="#pablo"
-                      className={horizontalTabs === "settings" ? "active" : ""}
+                      className={horizontalTabs === "teckstack" ? "active" : ""}
                       onClick={(e) =>
-                        changeActiveTab(e, "horizontalTabs", "settings")
+                        {changeActiveTab(e, "horizontalTabs", "teckstack"); gridTeckStack()}
+                      }
+                    >
+                      Teck Stack
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      data-toggle="tab"
+                      href="#pablo"
+                      className={horizontalTabs === "digital" ? "active" : ""}
+                      onClick={(e) =>
+                        {changeActiveTab(e, "horizontalTabs", "digital"); getDigital()}
                       }
                     >
                       Digital Performance
@@ -221,32 +266,22 @@ import {
                   </NavItem>
                   <NavItem>
                     <NavLink
+                    
                       data-toggle="tab"
                       href="#pablo"
-                      className={horizontalTabs === "options" ? "active" : ""}
+                      className={horizontalTabs === "talent" ? "active" : ""}
                       onClick={(e) =>
-                        changeActiveTab(e, "horizontalTabs", "options")
+                        {changeActiveTab(e, "horizontalTabs", "talent"); getTalent()}
                       }
                     >
-                      Teck Stack
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      data-toggle="tab"
-                      href="#pablo"
-                      className={horizontalTabs === "teckstack" ? "active" : ""}
-                      onClick={(e) =>
-                        changeActiveTab(e, "horizontalTabs", "teckstack")
-                      }
-                    >
-                      Teck Stack
+                      Talent
                     </NavLink>
                   </NavItem>
 
                 </Nav>
                 <TabContent className="tab-space" activeTab={horizontalTabs}>
-                  <TabPane tabId="profile">
+                  <TabPane tabId="investment">
+                    <h4>Compare Investement</h4>
                     <table className="styled-table">
                           <thead>
                               <tr>
@@ -272,8 +307,9 @@ import {
                       </table>
 
                   </TabPane>
-                  <TabPane tabId="settings">
+                  <TabPane tabId="teckstack">
                   <table className="styled-table">
+                          <h4>...En desarrollo...</h4>
                           <thead>
                               <tr>
                                   <th>Info</th>
@@ -284,12 +320,12 @@ import {
                           </thead>
                           <tbody>
                             {
-                                gridcompdigi && gridcompdigi.map((d) =>{
+                                gridcompteck && gridcompteck.map((d) =>{
                                     return (
                                         <tr>
                                             <td>{d.output_name1}</td>
-                                            <td>{d.text_value1}</td>
-                                            <td>{d.text_value2}</td>
+                                            <td>{d.value1}</td>
+                                            <td>{d.value2}</td>
                                         </tr>
                                     )
                                 } )  
@@ -297,18 +333,57 @@ import {
                           </tbody>
                       </table>
                   </TabPane>
-                  <TabPane tabId="options">
-                    Completely synergize resource taxing relationships via
-                    premier niche markets. Professionally cultivate one-to-one
-                    customer service with robust ideas. <br />
-                    <br />
-                    Dynamically innovate resource-leveling customer service for
-                    state of the art customer service.
+                  <TabPane tabId="digital">
+                    <h4>Compare Digital Performance</h4>
+                    <table className="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Info</th>
+                                <th>{titulo1}</th>
+                                <th>{titulo2}</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                          {
+                              gridcompdigi && gridcompdigi.map((d) =>{
+                                  return (
+                                      <tr>
+                                          <td>{d.output_name1}</td>
+                                          <td>{d.value1}</td>
+                                          <td>{d.value2}</td>
+                                      </tr>
+                                  )
+                              } )  
+                          }
+                        </tbody>
+                    </table>
                   </TabPane>
-                  <TabPane tabId="teckstack">
-                    GRID TECK STACK <br />
-                    <br />
-                    Development in progress ...
+                  <TabPane tabId="talent">                  
+                    <h4>Compare Talent</h4>
+                    <table className="styled-table">
+                          <thead >
+                              <tr>
+                                  <th>Info</th>
+                                  <th>{titulo1}</th>
+                                  <th>{titulo2}</th>
+                                  
+                              </tr>
+                          </thead>
+                          <tbody>
+                            {
+                                gridcomptalent && gridcomptalent.map((d) =>{
+                                    return (
+                                        <tr>
+                                            <td>{d.output_name1}</td>
+                                            <td>{d.value1}</td>
+                                            <td>{d.value2}</td>
+                                        </tr>
+                                    )
+                                } )  
+                            }
+                          </tbody>
+                        </table>
                   </TabPane>
                 </TabContent>
               </CardBody>

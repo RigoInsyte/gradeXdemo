@@ -40,6 +40,7 @@ const Boton1 = ({id}) => {
     <div className="actions-right">
     <Button
       onClick={() =>{
+        context.dispatch({ type: "SET_MENU_OLD", payload: 41 });
         context.dispatch({ type: "SET_EMPRESA", payload: id });
         context.dispatch({ type: "SET_MENU", payload: 1 });
       } }
