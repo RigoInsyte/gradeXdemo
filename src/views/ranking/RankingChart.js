@@ -1,113 +1,60 @@
-import React from "react";
-// react plugin used to create charts
-import { Line, Bar, Pie } from "react-chartjs-2";
-// reactstrap components
-import { Card, CardHeader, CardBody, CardTitle, Row, Col } from "reactstrap";
+import React from 'react';
+import { Bar } from 'react-chartjs-2';
 
-const chartExample8 = {
-    data: {
-      labels: ["JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
-      datasets: [
-        {
-          label: "Data",
-          fill: true,
-          backgroundColor: "#ff8a76",
-          hoverBackgroundColor: " #ff8a76",
-          borderColor: "#ff8a76",
-          borderWidth: 2,
-          borderDash: [],
-          borderDashOffset: 0.0,
-          data: [80, 100, 70, 80, 120, 80, 130],
-        },
-        {
-          label: "Data",
-          fill: true,
-          backgroundColor: "#2782f0",
-          hoverBackgroundColor: " #2782f0",
-          borderColor: "#2782f0",
-          borderWidth: 2,
-          borderDash: [],
-          borderDashOffset: 0.0,
-          data: [60, 110, 90, 70, 90, 100],
-        },
+const data = {
+  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  datasets: [
+    {
+      label: 'score',
+      data: [12, 19, 3, 5, 2, 3],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
       ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+      ],
+      borderWidth: 1,
     },
-    options: {
-      maintainAspectRatio: false,
-      legend: {
-        display: false,
-      },
-      tooltips: {
-        backgroundColor: "#f5f5f5",
-        titleFontColor: "#333",
-        bodyFontColor: "#666",
-        bodySpacing: 4,
-        xPadding: 12,
-        mode: "nearest",
-        intersect: 0,
-        position: "nearest",
-      },
-      responsive: true,
-      scales: {
-        yAxes: [
-          {
-            gridLines: {
-              drawBorder: false,
-              color: "rgba(29,140,248,0.1)",
-              zeroLineColor: "transparent",
-            },
-            ticks: {
-              suggestedMin: 60,
-              suggestedMax: 120,
-              padding: 20,
-              fontColor: "#9e9e9e",
-            },
-          },
-        ],
-        xAxes: [
-          {
-            gridLines: {
-              drawBorder: false,
-              color: "rgba(29,140,248,0.1)",
-              zeroLineColor: "transparent",
-            },
-            ticks: {
-              padding: 20,
-              fontColor: "#9e9e9e",
-            },
-          },
-        ],
-      },
-    },
-  };
-
-const Charts = () => {
-    return (
-        <>   
-            <div className="content">
-            <Col className="ml-auto" md="10">
-                <Card className="card-chart">
-                <CardHeader>
-                    <h5 className="card-category">Simple With Gradient</h5>
-                    <CardTitle tag="h3">
-                    <i className="tim-icons icon-chart-bar-32 text-primary" />{" "}
-                    10,000
-                    </CardTitle>
-                </CardHeader>
-                <CardBody>
-                    <div className="chart-area">
-                    <h4>GRAFICO DE BARRAS</h4>
-                    <Bar
-                    data={chartExample8.data}
-                    options={chartExample8.options}
-                    />
-                    </div>
-                </CardBody>
-                </Card>
-            </Col>
-            </div>
-        </> 
-    );
+  ],
 };
-    
-export default Charts;
+
+const options = {
+  indexAxis: 'y',
+  // Elements options apply to all of the options unless overridden in a dataset
+  // In this case, we are setting the border of each horizontal bar to be 2px wide
+  elements: {
+    bar: {
+      borderWidth: 2,
+    },
+  },
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'right',
+    },
+    title: {
+      display: true,
+      text: 'Chart.js Horizontal Bar Chart',
+    },
+  },
+};
+
+const HorizontalBarChart = () => (
+  <>
+    <div className="content">
+      <Bar data={data} options={options} />
+    </div>
+  </>
+);
+
+export default HorizontalBarChart;

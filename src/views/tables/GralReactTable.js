@@ -1,12 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
-import ReactTables from "./ReactTables"
 import Datastore from "./store/Datastore";
 import Data from "./Data";
 import Context from "./store/Context";
 import {
     Button,
     Input,
+    Row,
+    Col,
   } from "reactstrap";
+  import "./gralReactTable.css"
 
 const Botones = () => {
 
@@ -58,6 +60,7 @@ const Botones = () => {
       };    
     return (
         <div className="content">
+            <Row>
                 <Button  onClick={() => handleMenu(1)}>Companies</Button>
                 <Button  onClick={() => handleMenu(2)}>Investement</Button>
                 <Button  onClick={() => handleMenu(3)}>Teck Stack</Button>
@@ -70,14 +73,23 @@ const Botones = () => {
                           onChange={handleGrid}
                           value={context.state.menuSelectedOld === 42 ? "on":"off"}
                         />*/}
+            </Row>
+            <Row>
+                <Col md="3">
+                    <label className="container">Grid MODE
                     <Input type="checkbox" checked={context.state.menuSelectedOld === 42 ? true:false} onChange={handleGrid} />
-
+                    <span className="checkmark"></span>
+                    </label>
                     
+                </Col>    
+                <Col md="3">
                 <select className="react-select" name="empresa" id="empresa" value={empresaSelected} onChange={handleEmpresaChange}>
                   {
                     empresas.map(e => <option key={`emp-${e.COMPANY_ID}`} value={e.COMPANY_ID}>{e.COMPANY_NAME}</option>)
                   }
                 </select>                
+                </Col>
+            </Row>
         </div>
     )
 }

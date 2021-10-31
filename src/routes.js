@@ -44,7 +44,7 @@ import Rtl from "views/pages/Rtl.js";
 import Lock from "views/pages/Lock.js";
 import Compare from "views/compare/CompareGral"
 import Ranking from "views/ranking/RankingChart"
-
+import Lead from "views/ranking/LeadAssessment"
 
 const routes = [
   {
@@ -69,6 +69,14 @@ const routes = [
     rtlName: "لوحة القيادة",
     icon: "tim-icons icon-chart-bar-32",
     component: Ranking,
+    layout: "/admin",
+  }, 
+  {
+    path: "/leed",
+    name: "Leed Assessment",
+    rtlName: "لوحة القيادة",
+    icon: "tim-icons icon-shape-star",
+    component: Lead,
     layout: "/admin",
   },  
   {
