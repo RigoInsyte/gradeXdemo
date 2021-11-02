@@ -183,7 +183,7 @@ const Admin = (props) => {
         activeColor={activeColor}
         logo={{
           outterLink: "https://www.creative-tim.com/",
-          text: "Creative Tim",
+          text: "GRADE X",
           imgSrc: logo,
         }}
         closeSidebar={closeSidebar}

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
+import { Col,
+} from "reactstrap";
 
 const data = {
   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -52,8 +54,11 @@ const options = {
 const HorizontalBarChart = () => (
   <>
     <div className="content">
+    <Col md="8">
       <Bar data={data} options={options} />
+      </Col>
     </div>
+
   </>
 );
 
