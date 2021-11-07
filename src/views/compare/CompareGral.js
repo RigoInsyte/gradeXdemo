@@ -37,15 +37,29 @@ import { isConstructorDeclaration } from 'typescript';
 	useEffect(() => {
 		const getData = async () => {
 			try {
-        let resp = await fetch(`http://168.181.186.118:9093/democompany/allcomp`);
+        //let resp = await fetch(`http://168.181.186.118:9093/democompany/allcomp`);
+        let resp = await fetch(`https://l9a7vcu3re.execute-api.us-east-2.amazonaws.com/prod/companies`);
+        //https://l9a7vcu3re.execute-api.us-east-2.amazonaws.com/prod/companies
         //let resp = await fetch(`http://localhost:8080/democompany/searchcompany`);
 			  resp = await resp.json();
-        setData(resp.return);
-        setData2(resp.return);
-        console.error(resp.return);
-        setSelectcomp1(resp.return[0].COMPANY_ID);
+        setData(resp.companies);
+        setData2(resp.companies);
+        console.error(resp.companies);
+        setSelectcomp1(resp.companies[0].id);
+        //setSelectcomp2(resp.return[0].COMPANY_ID);    
         setSelectcomp2(resp.return[0].COMPANY_ID);    
         console.log(resp.return[0].COMPANY_ID)
+
+        // para borrar demo de ocmo armar datos para graficos
+        var respuesta = resp.return 
+        var auxIdes=[], auxNom=[];
+        respuesta.map(elemento => {
+          auxIdes.push(elemento.COMPANY_ID)
+          auxNom.push(elemento.COMPANY_NAME)
+        });
+        console.log(auxIdes)
+        console.log(auxNom)
+
 			  } catch(error) {
 				  console.error(error);
 			  }

@@ -5,18 +5,17 @@ import {
     CardHeader,
     CardBody,
     CardTitle,
-    NavItem,
-    NavLink,
-    Nav,
-    TabContent,
-    TabPane,
+    CardText,
+    Button,
     Row,
     Col,
-    Form,
     Label,
     Input,
     FormGroup,
   } from "reactstrap";
+  import ReactBSAlert from "react-bootstrap-sweetalert";
+  import { FaStar } from "react-icons/fa"
+  import "./leadAssessment.css"
 
 export default function CompareGral() {
     const [data1, setData]= useState([]);
@@ -24,13 +23,21 @@ export default function CompareGral() {
     const [selectcomp1Name, setSelectcomp1Name] = useState();
     const [loading, setLoading] = useState(true);
 
+    const [rating, setRating] = useState(null);
+    const [rating1, setRating1] = useState(null);
+    const [rating3, setRating3] = useState(null);
+
+    const [alert, setAlert] = React.useState(null);
+
 	useEffect(() => {
 		const getData = async () => {
 			try {
-        let resp = await fetch(`http://168.181.186.118:9093/democompany/allcomp`);
+        //let resp = await fetch(`http://168.181.186.118:9093/democompany/allcomp`);
+        let resp = await fetch(`https://l9a7vcu3re.execute-api.us-east-2.amazonaws.com/prod/companies`);
 			  resp = await resp.json();
-        setData(resp.return);        
-        setSelectcomp1(resp.return[0].COMPANY_ID);
+        setData(resp.companies);        
+        setSelectcomp1(resp.companies[0].id);
+        console.log(resp.companies)
 			  } catch(error) {
 				  console.error(error);
 			  }
@@ -38,9 +45,27 @@ export default function CompareGral() {
 		getData().then(() => setLoading(false));
 	}, []);
 
-
+    const titleAndTextAlert = () => {
+        setAlert(
+          <ReactBSAlert
+            style={{ display: "block", marginTop: "-100px" }}
+            title="Save"
+            onConfirm={() => hideAlert()}
+            onCancel={() => hideAlert()}
+            confirmBtnBsStyle="success"
+            btnSize=""
+          >
+            It's pretty, isn't it?
+          </ReactBSAlert>
+        );
+      };
+      
+      const hideAlert = () => {
+        setAlert(null);
+      };
 
     return(
+
         <div className="content">
         LEED ASSESSMENT
         <Row>
@@ -56,7 +81,7 @@ export default function CompareGral() {
                         name="selectcomp1"
                         value={selectcomp1}
                         onChange={e => {setSelectcomp1(e.value);setSelectcomp1Name(e.label)}}
-                        options= {data1.map(e=>({label: e.COMPANY_NAME, value: e.COMPANY_ID}))}
+                        options= {data1.map(e=>({label: e.name, value: e.id}))}
                         placeholder = {selectcomp1Name == "" ? "Single Select" : selectcomp1Name}
                     />
                     <br/>
@@ -73,21 +98,59 @@ export default function CompareGral() {
                     <Row>
                         <Col md="3">
                         <h5>Potential Lead Value</h5>
-                        
-                          <i className="tim-icons icon-shape-star"/>
-                          <i className="tim-icons icon-shape-star"/>
-                          <span className="tim-icons icon-shape-star"></span>
-                          <i className="tim-icons icon-shape-star"/>
-                          <i className="tim-icons icon-shape-star"/>
-                          <i className="tim-icons icon-shape-star"/>
-                          
-                        
+                        This rating is : {rating1}                            
+                            <div>    
+                                
+                                {[ ...Array(5)].map((star, i) => { 
+                                    const ratingValue1 = i + 1;
+                                return (
+                                    <label>
+                                    <input type="radio" name="rating1" value={ratingValue1} onClick={() => setRating1(ratingValue1)} />
+                                    <FaStar className="star"
+                                            color={ratingValue1 <= rating1 ? "#ffc107" : "#e4e5e9"}
+                                            size={20}
+                                        />
+                                    </label>
+                                );
+                                })}
+                            </div>                        
                         </Col>
                         <Col md="3">
-                        <h5>Level of work required to transform</h5>
+                          <h5>Level of work required to transform</h5>
+                            This rating is : {rating}                            
+                            <div>                                    
+                                {[ ...Array(5)].map((star, i) => { 
+                                    const ratingValue = i + 1;
+                                return (
+                                    <label>
+                                    <input type="radio" name="rating" value={ratingValue} onClick={() => setRating(ratingValue)} />
+                                    <FaStar className="star"
+                                            color={ratingValue <= rating ? "#ffc107" : "#e4e5e9"}
+                                            size={20}
+                                        />
+                                    </label>
+                                );
+                                })}
+                            </div>
                         </Col>
                         <Col md="3">
                         <h5>Time to close</h5>
+                        This rating is : {rating3}                            
+                            <div>    
+                                
+                                {[ ...Array(5)].map((star, i) => { 
+                                    const ratingValue3 = i + 1;
+                                return (
+                                    <label>
+                                    <input type="radio" name="rating3" value={ratingValue3} onClick={() => setRating3(ratingValue3)} />
+                                    <FaStar className="star"
+                                            color={ratingValue3 <= rating3 ? "#ffc107" : "#e4e5e9"}
+                                            size={20}
+                                        />
+                                    </label>
+                                );
+                                })}
+                            </div>
                         </Col>
 
                     </Row>          
@@ -100,7 +163,24 @@ export default function CompareGral() {
                             <Input placeholder="Observation:" type="text" />
                         </FormGroup>
                         </Col>
-                  </Row>      
+                  </Row>   
+                  <Row>
+                  <Col md="4">
+                  <Card>
+                        <CardBody className="text-center">
+                        <CardText>Save Assessment</CardText>
+                            <Button
+                                className="btn-fill"
+                                color="info"
+                                onClick={titleAndTextAlert}
+                            >
+                                Save!
+                            </Button>
+                        </CardBody>
+                    </Card>
+                    </Col>
+                      
+                  </Row>   
                 </CardBody>
             </Col>
         </Row>

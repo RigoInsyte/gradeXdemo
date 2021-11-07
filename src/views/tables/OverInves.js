@@ -17,10 +17,10 @@ const OverInves = () => {
     useEffect(() => {
       const getData = async () => {
         try {
-          //let resp = await fetch(`http://168.181.186.118:9093/democompany/companyover?idcom=${empresaSelected}`);
-          let resp = await fetch(`http://168.181.186.118:9093/democompany/invesover?idcom=${empresaSelected}`);
+          let resp = await fetch(`https://l9a7vcu3re.execute-api.us-east-2.amazonaws.com/prod/companies/${empresaSelected}?screen=INVESTMENT`);
+          //let resp = await fetch(`http://168.181.186.118:9093/democompany/invesover?idcom=${empresaSelected}`);
           resp = await resp.json();
-          setGrilla(resp.return);
+          setGrilla(resp.company.attributes);
         } catch(error) {
           console.error(error);
         }
@@ -52,8 +52,8 @@ const OverInves = () => {
                                     grilla.map((d) =>{
                                         return (
                                             <tr>
-                                                <td>{d.OUTPUT_NAME}</td>
-                                                <td>{d.TEXT_VALUE}</td>                                            
+                                                <td>{d.name}</td>
+                                                <td>{d.value}</td>                                            
                                             </tr>
                                         )
                                     } )  

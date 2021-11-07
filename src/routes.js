@@ -38,6 +38,7 @@ import Icons from "views/components/Icons.js";
 import Compare from "views/compare/CompareGral"
 import Ranking from "views/ranking/RankingChart"
 import Lead from "views/ranking/LeadAssessment"
+import RankginApex from "./views/ranking/RankginApex"
 
 const routes = [
   {
@@ -61,7 +62,7 @@ const routes = [
     name: "Ranking",
     rtlName: "لوحة القيادة",
     icon: "tim-icons icon-chart-bar-32",
-    component: Ranking,
+    component: RankginApex,
     layout: "/admin",
   }, 
   {

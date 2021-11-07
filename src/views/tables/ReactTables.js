@@ -64,7 +64,6 @@ const ReactTables = () => {
 	useEffect(() => {
 		const getData = async () => {
 			try {
-        //let resp = await fetch(`http://localhost:8080/democompany/searchcompany`);
         //let resp = await fetch(`http://localhost:8080/democompany/ranking20`);
         let resp = await fetch(`http://localhost:9090/democompany/companycrosstab`);
         resp = await resp.json();

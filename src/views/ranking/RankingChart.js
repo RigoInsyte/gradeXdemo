@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
-import { Col,
+import { Col, Row,
 } from "reactstrap";
+import Chart from 'react-apexcharts'
 
 const data = {
   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -51,12 +52,51 @@ const options = {
   },
 };
 
+
+const apexOptions = {
+    chart: {
+      id: 'apexchart-example'
+    },
+    xaxis: {
+      categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+    }
+};
+
+const apexSeries = {
+    name: 'series-1',
+    data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+}
+
+/*
+constructor(props) {
+  super(props);
+
+  this.state = {
+    options: {
+      chart: {
+        id: 'apexchart-example'
+      },
+      xaxis: {
+        categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+      }
+    },
+    series: [{
+      name: 'series-1',
+      data: [30, 40, 35, 50, 49, 60, 70, 91, 125]
+    }]
+  }
+}
+*/
+
 const HorizontalBarChart = () => (
   <>
     <div className="content">
-    <Col md="8">
-      <Bar data={data} options={options} />
-      </Col>
+
+    <Row>
+        <Col md="8">
+          <Chart options={apexOptions} series={apexSeries} type="bar" width={500} height={320} />
+        </Col>
+    </Row>
     </div>
 
   </>

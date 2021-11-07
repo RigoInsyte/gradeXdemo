@@ -48,17 +48,18 @@ const GridInves = () => {
 		const getData = async () => {
 			try {
         //let resp = await fetch(`http://localhost:8080/democompany/searchcompany`);
-        //let resp = await fetch(`http://localhost:8080/democompany/ranking20`);
-        let resp = await fetch(`http://localhost:9090/democompany/investementcrosstab`);
+        let resp = await fetch(`https://l9a7vcu3re.execute-api.us-east-2.amazonaws.com/prod/companies_with_attributes?screen=INVESTMENT`);
+        //let resp = await fetch(`http://localhost:9090/democompanyfd/investementcrosstab`);
+
         resp = await resp.json();
-        //setGrilla(resp.return);
-        resp = resp.return.map((r)=>{
+        console.log (resp);
+        let formateado = resp.companies.map((r)=>{
           return {...r, actions: 
-          <Boton1 id={r.company_id}/> 
+          <Boton1 id={r.id}/> 
         }
         })
-        setGrilla(resp);
-       // console.log(resp.return);
+        setGrilla(formateado);
+        console.log(resp);
 			} catch(error) {
 				console.error(error);
 			}
@@ -98,7 +99,7 @@ const GridInves = () => {
           <Col xs={12} md={12}>
             <Card>
               <CardHeader>
-                <CardTitle tag="h4">Investment Grid - id {empresaSelected}</CardTitle>
+                <CardTitle tag="h4">new Investment Grid - id {empresaSelected}</CardTitle>
                     
               </CardHeader>
               <CardBody>
@@ -113,11 +114,11 @@ const GridInves = () => {
                     },
                     {
                       Header: "ID",
-                      accessor: "company_id",
+                      accessor: "id",
                     },
                     {
                       Header: "NAME",
-                      accessor: "company_name",
+                      accessor: "name",
                     },
                     {
                       Header: "Founded",
