@@ -2,13 +2,22 @@ import React, { useEffect, useState, useContext } from "react";
 import Datastore from "./store/Datastore";
 import Data from "./Data";
 import Context from "./store/Context";
+import Select from "react-select";
 import {
+    Card,
+    CardHeader,
+    CardBody,
+    CardTitle,
     Button,
     Input,
     Row,
     Col,
+    Label,
+    FormGroup,
+    Form,
   } from "reactstrap";
   import "./gralReactTable.css"
+import { isConstructorDeclaration } from "typescript";
 
 const Botones = () => {
 
@@ -53,41 +62,66 @@ const Botones = () => {
 
 
     const [empresaSelected, setEmpresaSelected] = useState("");
+    const [selectcomp1Name, setSelectcomp1Name] = useState();
 
     const handleEmpresaChange = (e) => {
-          context.dispatch({ type: "SET_EMPRESA", payload: e.target.value });
-          setEmpresaSelected(e.target.value);
+          console.log(e.value);
+          context.dispatch({ type: "SET_EMPRESA", payload: e.value });
+          setEmpresaSelected(e.value);
+          setSelectcomp1Name(e.label);
       };    
+
     return (
-        <div className="content">
+        <div className="content" >
             <Row>
-                <Button  onClick={() => handleMenu(1)}>Companies</Button>
-                <Button  onClick={() => handleMenu(2)}>Investement</Button>
-                <Button  onClick={() => handleMenu(3)}>Teck Stack</Button>
-                <Button  onClick={() => handleMenu(4)}>Digital Perfor.</Button>
-                <Button  onClick={() => handleMenu(5)}>Talent</Button>
-              { /* <CustomInput
-                          type="switch"
-                          id="switch-3"
-                          label="Grid"
-                          onChange={handleGrid}
-                          value={context.state.menuSelectedOld === 42 ? "on":"off"}
-                        />*/}
+                <Col md="8">
+                    <Card>
+                        <CardBody>
+                        <Button  onClick={() => handleMenu(1)}>Companies</Button>
+                        <Button  onClick={() => handleMenu(2)}>Investement</Button>
+                        <Button  onClick={() => handleMenu(3)}>Teck Stack</Button>
+                        <Button  onClick={() => handleMenu(4)}>Digital Perfor.</Button>
+                        <Button  onClick={() => handleMenu(5)}>Talent</Button>
+                             { /* <CustomInput
+                                type="switch"
+                                id="switch-3"
+                                label="Grid"
+                                onChange={handleGrid}
+                                value={context.state.menuSelectedOld === 42 ? "on":"off"}
+                                />*/}
+                        </CardBody>
+                    </Card>
+                </Col>
+                <Col md="2">
+                    <Card>
+                        <CardBody>
+                           <Form>
+                                <FormGroup check className="mt-4">
+                                    <Label check>
+                                    <Input type="checkbox" checked={context.state.menuSelectedOld === 42 ? true:false} onChange={handleGrid}/>
+                                    <span className="form-check-sign" />
+                                    Grid Mode
+                                    </Label>
+                                </FormGroup>
+                            </Form> 
+                        </CardBody>
+                    </Card>
+                </Col>
             </Row>
+
             <Row>
+                
                 <Col md="3">
-                    <label className="container">Grid MODE
-                    <Input type="checkbox" checked={context.state.menuSelectedOld === 42 ? true:false} onChange={handleGrid} />
-                    <span className="checkmark"></span>
-                    </label>
-                    
-                </Col>    
-                <Col md="3">
-                <select className="react-select" name="empresa" id="empresa" value={empresaSelected} onChange={handleEmpresaChange}>
-                  {
-                    empresas.map(e => <option key={`emp-${e.COMPANY_ID}`} value={e.COMPANY_ID}>{e.COMPANY_NAME}</option>)
-                  }
-                </select>                
+                <Select
+                        className="react-select info"
+                        classNamePrefix="react-select"
+                        name="empresaSelected"
+                        value={empresaSelected}
+                        onChange={handleEmpresaChange}
+                        options= {empresas.map(e=>({label: e.COMPANY_NAME, value: e.COMPANY_ID}))}
+                        placeholder = {selectcomp1Name == "" ? "Single Select" : selectcomp1Name}
+                    />
+           
                 </Col>
             </Row>
         </div>

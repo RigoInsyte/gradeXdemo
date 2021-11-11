@@ -13,7 +13,7 @@ const OverInves = () => {
     const context = useContext(Context);
     let { empresaSelected }  = context.state;
     const [grilla, setGrilla] = useState([]);
-  
+    const [empre, setEmpre] = useState([]);
     useEffect(() => {
       const getData = async () => {
         try {
@@ -21,6 +21,7 @@ const OverInves = () => {
           //let resp = await fetch(`http://168.181.186.118:9093/democompany/invesover?idcom=${empresaSelected}`);
           resp = await resp.json();
           setGrilla(resp.company.attributes);
+          setEmpre(resp.company.name);
         } catch(error) {
           console.error(error);
         }
@@ -37,7 +38,7 @@ const OverInves = () => {
           <Col className="mb-5" md="12">
             <Card>
               <CardHeader>
-                <CardTitle tag="h4">Investment - {empresaSelected}</CardTitle>
+                <CardTitle tag="h4">Investment - {empre}</CardTitle>
               </CardHeader>
               <CardBody>
                 <Table className="tablesorter" responsive>

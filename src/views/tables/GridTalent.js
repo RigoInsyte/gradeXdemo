@@ -46,15 +46,14 @@ const GridTalent = () => {
 
 	useEffect(() => {
 		const getData = async () => {
-			try {
-        //let resp = await fetch(`http://localhost:8080/democompany/searchcompany`);
-        //let resp = await fetch(`http://localhost:8080/democompany/ranking20`);
-        let resp = await fetch(`http://localhost:9090/democompany/talentcrosstab`);
+			try {      
+        let resp = await fetch(`https://l9a7vcu3re.execute-api.us-east-2.amazonaws.com/prod/companies_with_attributes?screen=TALENT`);
+        //let resp = await fetch(`http://localhost:9090/democompany/talentcrosstab`);
         resp = await resp.json();
         //setGrilla(resp.return);
-        resp = resp.return.map((r)=>{
+        resp = resp.companies.map((r)=>{
           return {...r, actions: 
-          <Boton1 id={r.company_id}/> 
+          <Boton1 id={r.id}/> 
         }
         })
         setGrilla(resp);
@@ -97,10 +96,6 @@ const GridTalent = () => {
         <Row className="mt-5">
           <Col xs={12} md={12}>
             <Card>
-              <CardHeader>
-                <CardTitle tag="h4">Talent Grid - id {empresaSelected}</CardTitle>
-                    
-              </CardHeader>
               <CardBody>
                 <ReactTable
                   data={grilla}
@@ -113,11 +108,11 @@ const GridTalent = () => {
                     },
                     {
                       Header: "ID",
-                      accessor: "company_id",
+                      accessor: "id",
                     },
                     {
                       Header: "NAME",
-                      accessor: "company_name",
+                      accessor: "name",
                     },
                     {
                       Header: "Employee distribution by function",

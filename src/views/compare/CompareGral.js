@@ -16,6 +16,8 @@ import {
   import "./compareGral.css"
 import { isConstructorDeclaration } from 'typescript';
 
+import Compar2 from "./Compar2";
+
 //const CompareGral = () => {
   export default function CompareGral() {
 
@@ -47,11 +49,11 @@ import { isConstructorDeclaration } from 'typescript';
         console.error(resp.companies);
         setSelectcomp1(resp.companies[0].id);
         //setSelectcomp2(resp.return[0].COMPANY_ID);    
-        setSelectcomp2(resp.return[0].COMPANY_ID);    
-        console.log(resp.return[0].COMPANY_ID)
+        setSelectcomp2(resp.companies[0].id);    
+        //console.log(resp.return[0].COMPANY_ID)
 
         // para borrar demo de ocmo armar datos para graficos
-        var respuesta = resp.return 
+        /*var respuesta = resp.return 
         var auxIdes=[], auxNom=[];
         respuesta.map(elemento => {
           auxIdes.push(elemento.COMPANY_ID)
@@ -59,7 +61,7 @@ import { isConstructorDeclaration } from 'typescript';
         });
         console.log(auxIdes)
         console.log(auxNom)
-
+        */
 			  } catch(error) {
 				  console.error(error);
 			  }
@@ -162,16 +164,21 @@ const [gridcompteck, setCompTesck]= useState();
 
 // grid talent
 const [gridcomptalent, setCompTalent]= useState();
-
+const [gridcomptalent2, setCompTalent2]= useState();
   const getTalent = async () => {
     try {
       console.log (selectcomp1);
       //let resp = await fetch(`http://localhost:9090/democompany/compareinvestment3?comp1=` + selectcomp1 + `&comp2=` + selectcomp2);
-      let resp = await fetch(`http://localhost:9090/democompany/comparetalent?comp1=` + selectcomp1 + `&comp2=` + selectcomp2);
+      let resp = await fetch(`https://l9a7vcu3re.execute-api.us-east-2.amazonaws.com/prod/companies/15?screen=TALENT`);
+      let resp2 = await fetch(`https://l9a7vcu3re.execute-api.us-east-2.amazonaws.com/prod/companies/33?screen=TALENT`);
       resp = await resp.json();
-      setCompTalent(resp.return);
-      setTitulo1(resp.return[0].company_name1);    
-      setTitulo2(resp.return[0].company_name2);    
+      resp2 = await resp2.json();
+
+      setCompTalent(resp.company.attributes);
+      setCompTalent2(resp2.company.attributes);
+      
+      setTitulo1(resp.company.name);    
+      //setTitulo2(resp.return[0].company_name2);    
       console.log(resp.return)
       } catch(error) {
         console.error(error);
@@ -180,15 +187,14 @@ const [gridcomptalent, setCompTalent]= useState();
 // end grid talent 
 
 
+
     return (
         <div className="content">
-            COMPARE COMPANIES
             <Row>
                 <Col md="4">
                     <Card>
                       <CardHeader>
                         <CardTitle tag="h4">Selected Company 1</CardTitle>
-                        {selectcomp1}
                         <br/>
                         <Select
                             className="react-select info"
@@ -196,7 +202,7 @@ const [gridcomptalent, setCompTalent]= useState();
                             name="selectcomp1"
                             value={selectcomp1}
                             onChange={e => {setSelectcomp1(e.value);setSelectcomp1Name(e.label)}}
-                            options= {data1.map(e=>({label: e.COMPANY_NAME, value: e.COMPANY_ID}))}
+                            options= {data1.map(e=>({label: e.name, value: e.id}))}
                             placeholder = {selectcomp1Name == "" ? "Single Select" : selectcomp1Name}
                         />
                         <br/>
@@ -206,8 +212,7 @@ const [gridcomptalent, setCompTalent]= useState();
                 <Col md="4">
                     <Card>
                       <CardHeader>
-                        <CardTitle tag="h4">Selected Company 2</CardTitle>
-                        {selectcomp2}
+                        <CardTitle tag="h4">Selected Company 2</CardTitle>                        
                         <br/>
                         <Select
                           className="react-select info"
@@ -215,29 +220,29 @@ const [gridcomptalent, setCompTalent]= useState();
                           name="selectcomp2"
                           value={selectcomp2}
                           onChange={e => {setSelectcomp2(e.value);setSelectcomp2Name(e.label)}}
-                          options= {data2.map(e=>({label: e.COMPANY_NAME, value: e.COMPANY_ID}))}                            
+                          options= {data2.map(e=>({label: e.name, value: e.id}))}                            
                           placeholder = {selectcomp2Name == "" ? "Single Select" : selectcomp2Name}
                         />
                         <br/>
                       </CardHeader>
                     </Card>
                 </Col>    
-                <Col md="2">
+            {/*}    <Col md="2">
                     <Card>
                       <CardHeader>
                         <CardTitle tag="h4">Change selections</CardTitle>
-                        <button onClick={clickBuscar}>Execute</button>
+                        <button onClick={demoJson}>Execute</button>
                         <br/>
                       </CardHeader>
                       <br/>
                     </Card>
-                </Col>    
+    </Col>   */} 
 
             </Row>    
             <Row>
             <Card>
               <CardHeader>
-                <h5 className="card-category">Navigation Compare</h5>
+                
                 <CardTitle tag="h3">Select Criteria</CardTitle>
               </CardHeader>
               <CardBody>
@@ -296,60 +301,32 @@ const [gridcomptalent, setCompTalent]= useState();
                 <TabContent className="tab-space" activeTab={horizontalTabs}>
                   <TabPane tabId="investment">
                     <h4>Compare Investement</h4>
-                    <table className="styled-table">
-                          <thead>
-                              <tr>
-                                  <th>Info</th>
-                                  <th>{titulo1}</th>
-                                  <th>{titulo2}</th>
-                                  
-                              </tr>
-                          </thead>
-                          <tbody>
-                            {
-                                gridcompinves && gridcompinves.map((d) =>{
-                                    return (
-                                        <tr>
-                                            <td>{d.output_name1}</td>
-                                            <td>{d.text_value1}</td>
-                                            <td>{d.text_value2}</td>
-                                        </tr>
-                                    )
-                                } )  
-                            }
-                          </tbody>
-                      </table>
-
+                    <Compar2 empresa1={selectcomp1} empresa2={selectcomp2} criteria={"INVESTMENT"} />           
                   </TabPane>
                   <TabPane tabId="teckstack">
-                  <table className="styled-table">
-                          <h4>...En desarrollo...</h4>
-                          <thead>
-                              <tr>
-                                  <th>Info</th>
-                                  <th>{titulo1}</th>
-                                  <th>{titulo2}</th>
-                                  
-                              </tr>
-                          </thead>
-                          <tbody>
-                            {
-                                gridcompteck && gridcompteck.map((d) =>{
-                                    return (
-                                        <tr>
-                                            <td>{d.output_name1}</td>
-                                            <td>{d.value1}</td>
-                                            <td>{d.value2}</td>
-                                        </tr>
-                                    )
-                                } )  
-                            }
-                          </tbody>
-                      </table>
+                    <h4>Compare Teck Stack</h4>
+                    <Compar2 empresa1={selectcomp1} empresa2={selectcomp2} criteria={"TECK_STACK"} />           
                   </TabPane>
                   <TabPane tabId="digital">
-                    <h4>Compare Digital Performance</h4>
-                    <table className="styled-table">
+                    <h4>Compare Digital Performance</h4>                    
+                    <Compar2 empresa1={selectcomp1} empresa2={selectcomp2} criteria={"DIGITAL_PERFORMANCE"} />           
+                  </TabPane>
+                  <TabPane tabId="talent">                  
+                    <h4>Compare Talent</h4>                    
+                    <Compar2 empresa1={selectcomp1} empresa2={selectcomp2} criteria={"TALENT"} />           
+                  </TabPane>
+                </TabContent>
+              </CardBody>
+            </Card>
+           
+            </Row>
+            
+        </div>
+    )
+};
+
+/*
+<table className="styled-table">
                         <thead>
                             <tr>
                                 <th>Info</th>
@@ -372,40 +349,7 @@ const [gridcomptalent, setCompTalent]= useState();
                           }
                         </tbody>
                     </table>
-                  </TabPane>
-                  <TabPane tabId="talent">                  
-                    <h4>Compare Talent</h4>
-                    <table className="styled-table">
-                          <thead >
-                              <tr>
-                                  <th>Info</th>
-                                  <th>{titulo1}</th>
-                                  <th>{titulo2}</th>
-                                  
-                              </tr>
-                          </thead>
-                          <tbody>
-                            {
-                                gridcomptalent && gridcomptalent.map((d) =>{
-                                    return (
-                                        <tr>
-                                            <td>{d.output_name1}</td>
-                                            <td>{d.value1}</td>
-                                            <td>{d.value2}</td>
-                                        </tr>
-                                    )
-                                } )  
-                            }
-                          </tbody>
-                        </table>
-                  </TabPane>
-                </TabContent>
-              </CardBody>
-            </Card>              
-            </Row>
-        </div>
-    )
-};
+
 
 //export default CompareGral;
 

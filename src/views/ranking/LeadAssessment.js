@@ -67,13 +67,12 @@ export default function CompareGral() {
     return(
 
         <div className="content">
-        LEED ASSESSMENT
+        
         <Row>
-            <Col md="4">
+            <Col md="7">
                 <Card>
                   <CardHeader>
-                    <CardTitle tag="h4">Selected Company</CardTitle>
-                    {selectcomp1}
+                    <CardTitle tag="h4">Selected Company</CardTitle>                    
                     <br/>
                     <Select
                         className="react-select info"
@@ -90,9 +89,9 @@ export default function CompareGral() {
             </Col>    
         </Row> 
         <Row>
-            <Col md="10">      
+            <Col md="9">      
                 <CardTitle>
-                    <h4>LEED ASSESSMENT</h4>
+                    
                 </CardTitle>          
                 <CardBody>                    
                     <Row>
@@ -158,14 +157,18 @@ export default function CompareGral() {
                     <br/>
                     <Row>
                         <Label sm="2">Observation:</Label>
-                        <Col sm="9">
+                        <Col sm="7">
                         <FormGroup>
                             <Input placeholder="Observation:" type="text" />
                         </FormGroup>
                         </Col>
                   </Row>   
-                  <Row>
-                  <Col md="4">
+                  
+                </CardBody>
+            </Col>
+        </Row>
+        <Row>
+                  <Col md="7">
                   <Card>
                         <CardBody className="text-center">
                         <CardText>Save Assessment</CardText>
@@ -180,10 +183,7 @@ export default function CompareGral() {
                     </Card>
                     </Col>
                       
-                  </Row>   
-                </CardBody>
-            </Col>
-        </Row>
+         </Row>   
     </div>
     )
 

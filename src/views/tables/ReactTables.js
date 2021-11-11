@@ -64,13 +64,13 @@ const ReactTables = () => {
 	useEffect(() => {
 		const getData = async () => {
 			try {
-        //let resp = await fetch(`http://localhost:8080/democompany/ranking20`);
-        let resp = await fetch(`http://localhost:9090/democompany/companycrosstab`);
+        let resp = await fetch(`https://l9a7vcu3re.execute-api.us-east-2.amazonaws.com/prod/companies_with_attributes?screen=COMPANIES`);
+        //let resp = await fetch(`http://localhost:9090/democompany/companycrosstab`);
         resp = await resp.json();
         //setGrilla(resp.return);
-        resp = resp.return.map((r)=>{
+        resp = resp.companies.map((r)=>{
           return {...r, actions: 
-          <Boton1 id={r.company_id}/> 
+          <Boton1 id={r.id}/> 
         }
         })
         setGrilla(resp);
@@ -99,25 +99,7 @@ const ReactTables = () => {
 		setEmpresaSelected(e.target.value);
 	};
 
-  const [loading, setLoading] = useState(true);
-  const [empresas, setEmpresas] = useState([]);
 
-	useEffect(() => {
-		const getData = async () => {
-			try {
-        let resp = await fetch(`http://168.181.186.118:9093/democompany/allcomp`);
-        //let resp = await fetch(`http://localhost:8080/democompany/searchcompany`);
-        //let resp = await fetch(`http://localhost:9090/democompany/companycrosstab`);
-				resp = await resp.json();
-        setEmpresas(resp.return);
-        console.error(resp.return);
-				setEmpresaSelected(resp.return[0].COMPANY_ID);
-			} catch(error) {
-				console.error(error);
-			}
-		};
-		getData().then(() => setLoading(false));
-	}, []);
 
   return (
     
@@ -131,10 +113,6 @@ const ReactTables = () => {
         <Row className="mt-5">
           <Col xs={12} md={12}>
             <Card>
-              <CardHeader>
-                <CardTitle tag="h4">id {empresaSelected}</CardTitle>
-                    
-              </CardHeader>
               <CardBody>
                 <ReactTable
                   data={grilla}
@@ -147,11 +125,11 @@ const ReactTables = () => {
                     },
                     {
                       Header: "ID",
-                      accessor: "company_id",
+                      accessor: "id",
                     },
                     {
                       Header: "NAME",
-                      accessor: "company_name",
+                      accessor: "name",
                     },
                     {
                       Header: "Applications",

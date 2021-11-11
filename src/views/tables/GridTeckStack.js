@@ -48,17 +48,17 @@ const GridTeckStack = () => {
 	useEffect(() => {
 		const getData = async () => {
 			try {
-        //let resp = await fetch(`http://localhost:8080/democompany/searchcompany`);
+        let resp = await fetch(`https://l9a7vcu3re.execute-api.us-east-2.amazonaws.com/prod/companies_with_attributes?screen=TECK_STACK`);
         //let resp = await fetch(`http://localhost:8080/democompany/ranking20`);
-        let resp = await fetch(`http://localhost:9090/democompany/teckcrosstab`);
+        //let resp = await fetch(`http://localhost:9090/democompany/teckcrosstab`);
         resp = await resp.json();
         //setGrilla(resp.return);
-        resp = resp.return.map((r)=>{
+        let formateado = resp.companies.map((r)=>{
           return {...r, actions: 
-          <Boton1 id={r.company_id}/> 
+          <Boton1 id={r.id}/> 
         }
         })
-        setGrilla(resp);
+        setGrilla(formateado);
        // console.log(resp.return);
 			} catch(error) {
 				console.error(error);
@@ -98,10 +98,6 @@ const GridTeckStack = () => {
         <Row className="mt-5">
           <Col xs={12} md={12}>
             <Card>
-              <CardHeader>
-                <CardTitle tag="h4">Teck Stack Grid - id {empresaSelected}</CardTitle>
-                    
-              </CardHeader>
               <CardBody>
                 <ReactTable
                   data={grilla}
@@ -114,11 +110,11 @@ const GridTeckStack = () => {
                     },
                     {
                       Header: "ID",
-                      accessor: "company_id",
+                      accessor: "id",
                     },
                     {
                       Header: "NAME",
-                      accessor: "company_name",
+                      accessor: "name",
                     },
                     {
                       Header: "Total IT Estimated Monthly Spend Tier",

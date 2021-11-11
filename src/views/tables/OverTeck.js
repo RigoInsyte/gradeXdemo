@@ -13,14 +13,16 @@ const OverTeck = () => {
     const context = useContext(Context);
     let { empresaSelected }  = context.state;
     const [grilla, setGrilla] = useState([]);
+    const [empre, setEmpre] = useState([]);
   
     useEffect(() => {
       const getData = async () => {
         try {
-          //let resp = await fetch(`http://168.181.186.118:9093/democompany/companyover?idcom=${empresaSelected}`);
-          let resp = await fetch(`http://168.181.186.118:9093/democompany/teckover?idcom=${empresaSelected}`);
+          let resp = await fetch(`https://l9a7vcu3re.execute-api.us-east-2.amazonaws.com/prod/companies/${empresaSelected}?screen=TECK_STACK`);
+          //let resp = await fetch(`http://168.181.186.118:9093/democompany/teckover?idcom=${empresaSelected}`);
           resp = await resp.json();
-          setGrilla(resp.return);
+          setGrilla(resp.company.attributes);
+          setEmpre(resp.company.name);
         } catch(error) {
           console.error(error);
         }
@@ -37,7 +39,7 @@ const OverTeck = () => {
           <Col className="mb-5" md="12">
             <Card>
               <CardHeader>
-                <CardTitle tag="h4">Teck Stack - {empresaSelected}</CardTitle>
+                <CardTitle tag="h4">Teck Stack - {empre}</CardTitle>
               </CardHeader>
               <CardBody>
                 <Table className="tablesorter" responsive>
@@ -52,8 +54,8 @@ const OverTeck = () => {
                                     grilla.map((d) =>{
                                         return (
                                             <tr>
-                                                <td>{d.OUTPUT_NAME}</td>
-                                                <td>{d.VALUE}</td>                                            
+                                                <td>{d.name}</td>
+                                                <td>{d.value}</td>                                            
                                             </tr>
                                         )
                                     } )  

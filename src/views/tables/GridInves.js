@@ -98,10 +98,6 @@ const GridInves = () => {
         <Row className="mt-5">
           <Col xs={12} md={12}>
             <Card>
-              <CardHeader>
-                <CardTitle tag="h4">new Investment Grid - id {empresaSelected}</CardTitle>
-                    
-              </CardHeader>
               <CardBody>
                 <ReactTable
                   data={grilla}

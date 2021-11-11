@@ -4,11 +4,11 @@ import Chart from 'react-apexcharts'
 const RankginApex =() => {
 
   const [opciones, setOpciones] = useState(
-    ['hans+', 'Caloga', 'Parrot', 'Deezer', 'Kameleoon', 'Elia System Operator', 'DPD group', 'Sinequa']
+    []
   );
 
   const [data, setData] = useState(
-    [95, 40, 35, 50, 89, 60, 70, 91, 125]
+    []
   );
 
   const [estado, setEstado] = useState(
@@ -18,7 +18,14 @@ const RankginApex =() => {
           id: 'apexchart-example'
         },
         xaxis: {
-          categories: opciones
+          categories: opciones,
+          labels: {
+            show: true,
+            style: {
+              color: 'red',
+              fontSize: '12px'
+            },
+          }            
         },
         plotOptions: {
             bar: {
@@ -60,11 +67,65 @@ const RankginApex =() => {
 
         
         console.log(resp.COMPANY_ID)
+
+        setEstado(
+          {
+            options: {
+              chart: {
+                id: 'apexchart-example'
+              },
+              xaxis: {
+                categories: auxNom,
+                title :{ text: 'SCORE', 
+                        style: { color : '#fff'},
+                    },
+                labels: {
+                  show: true,                  
+                  style: {
+                    colors: '#fff',
+                    fontSize: '12px'
+                  },
+                }                
+              },
+              yaxis: {
+                title: {
+                  text: 'Companies',
+                  style: {
+                    color: '#fff',
+                  },
+                },  
+                labels: {
+                  rotate: -2,                  
+                  color: 'red',
+                  style: {
+                    fontSize: '12px',
+                    colors: '#fff',
+                  },
+                },
+              }, 
+              plotOptions: {
+                  bar: {
+                    distributed: true,
+                    horizontal: true, //horizontal bar chart
+                  },
+                },
+              colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e',
+                '#f48024', '#69d2e7'
+              ],
+            },
+            series: [{
+              name: 'score',
+              data: auxIdes
+            }]
+          }
+        );  
 			  } catch(error) {
 				  console.error(error);
 			  }
-		};
-		getData().then(() => setLoading(false));
+    };
+    
+    getData().then(() => setLoading(false));
+    
     }, []);
 
 
