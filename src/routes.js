@@ -39,6 +39,9 @@ import Compare from "views/compare/CompareGral"
 import Ranking from "views/ranking/RankingChart"
 import Lead from "views/ranking/LeadAssessment"
 import RankginApex from "./views/ranking/RankginApex"
+import FeedAlerts from "./views/AccountModel/FeedAlerts"
+import FindAccountBuyer from "./views/AccountModel/FindAccountBuyer"
+import BuldAccountModel from "./views/AccountModel/BuildAccountModel"
 
 const routes = [
   {
@@ -73,6 +76,30 @@ const routes = [
     component: Lead,
     layout: "/admin",
   },  
+  {
+    path: "/alerts",
+    name: "Feed Alerts",
+    rtlName: "لوحة القيادة",
+    icon: "tim-icons icon-time-alarm",
+    component: FeedAlerts,
+    layout: "/admin",
+  },  
+  {
+    path: "/findaccuount",
+    name: "Find Account Buyer",
+    rtlName: "لوحة القيادة",
+    icon: "tim-icons icon-single-02",
+    component: FindAccountBuyer,
+    layout: "/admin",
+  },  
+  {
+    path: "/buildmodel",
+    name: "Buil Account Model",
+    rtlName: "ساحر",
+    icon: "tim-icons icon-app",
+    component: BuldAccountModel,
+    layout: "/admin",
+  },
 ];
 
 export default routes;

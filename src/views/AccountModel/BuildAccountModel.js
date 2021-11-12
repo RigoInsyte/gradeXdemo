@@ -1,19 +1,3 @@
-/*!
-
-=========================================================
-* Black Dashboard PRO React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/black-dashboard-pro-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import React from "react";
 // react plugin used to create a form with multiple steps
 import ReactWizard from "react-bootstrap-wizard";
@@ -22,14 +6,14 @@ import ReactWizard from "react-bootstrap-wizard";
 import { Col } from "reactstrap";
 
 // wizard steps
-import Step1 from "./WizardSteps/Step1.js";
-import Step2 from "./WizardSteps/Step2.js";
-import Step3 from "./WizardSteps/Step3.js";
+import Step1 from "./StepsBuild/Step1Name.js";
+import Step2 from "./StepsBuild/Step2Name.js";
+import Step3 from "./StepsBuild/Step2Name.js";
 
 var steps = [
   {
-    stepName: "Criteria",
-    stepIcon: "tim-icons icon-single-02",
+    stepName: "Name",
+    stepIcon: "tim-icons icon-align-center",
     component: Step1,
   },
   {
@@ -44,7 +28,7 @@ var steps = [
   },
 ];
 
-const Wizard = () => {
+const BuildAccountModel = () => {
   return (
     <>
       <div className="content">
@@ -68,4 +52,4 @@ const Wizard = () => {
   );
 };
 
-export default Wizard;
+export default BuildAccountModel;
