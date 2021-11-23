@@ -24,7 +24,16 @@ import {
   Col,
   UncontrolledTooltip,
 } from "reactstrap";
-import OnePerson from "./OnePerson"
+import OnePerson from  "./OnePerson";
+import { isConstructorDeclaration } from "typescript";
+
+const handleButtonclick = () =>{
+  console.log("click del botn en table");
+  //console.log(OnePerson)
+  //return <OnePerson />;
+  //console.log("click del botn en table2");
+  
+};
 
 
 const PeopleTable = () => {
@@ -35,9 +44,8 @@ const PeopleTable = () => {
                   <tr>
                     <th className="text-center">#</th>
                     <th>Name</th>
-                    <th>Job Position</th>
-                    <th className="text-center">Since</th>
-                    <th className="text-right">Salary</th>
+                    <th></th>                    
+                    <th className="text-center">Company</th>
                     <th className="text-right">Actions</th>
                   </tr>
                 </thead>
@@ -51,25 +59,45 @@ const PeopleTable = () => {
                         />
                       </div>
                     </td>
-                    <td>Andrew Mike</td>
-                    <td>Develop</td>
-                    <td className="text-center">2013</td>
-                    <td className="text-right">€ 99,225</td>
+                    <td>
+                      <h4>Andrew Mike</h4>
+                      <br/>
+                      Global Chief Information
+                      Digital Banking | Fintech
+                      <br/>
+                      <Button className="btn-icon" color="linkedin">
+                        <i className="fab fa-linkedin" />
+                      </Button>
+                    </td>
+                    <td className="text-left">
+                      Work   -----@icbc.com <br/>
+                      Direct -----@icbc.com <br/>
+                      Phone  +2355--------- <br/>
+                    </td>
+                    <td>
+                      <img
+                          alt="..."
+                          src={require("assets/img/icbclogo.png").default}
+                          width= "60px"
+                          height = "40px"
+                        />
+                        <br/>
+                        <h4>Industrial and Commercial Bank of China</h4>
+                        China - Banking<br/>
+                        + 10000 employees 
+                    </td>
+                    
                     <td className="text-right">
                       <Button
                         className="btn-link btn-icon"
                         color="success"
                         id="tooltip324367706"
                         size="sm"
+                        onClick={handleButtonclick}
                       >
                         <i className="tim-icons icon-refresh-01" />
                       </Button>
-                      <UncontrolledTooltip
-                        delay={0}
-                        target="tooltip324367706"
-                      >
-                        Tooltip on top
-                      </UncontrolledTooltip>
+
                       <Button
                         className="btn-link"
                         color="danger"
@@ -97,7 +125,6 @@ const PeopleTable = () => {
                     </td>
                     <td>John Doe</td>
                     <td>Design</td>
-                    <td className="text-center">2012</td>
                     <td className="text-right">€ 89,241</td>
                     <td className="text-right">
                       <Button
@@ -141,7 +168,6 @@ const PeopleTable = () => {
                     </td>
                     <td>Alex Mike</td>
                     <td>Design</td>
-                    <td className="text-center">2010</td>
                     <td className="text-right">€ 92,144</td>
                     <td className="text-right">
                       <Button
@@ -185,7 +211,6 @@ const PeopleTable = () => {
                     </td>
                     <td>Mike Monday</td>
                     <td>Marketing</td>
-                    <td className="text-center">2013</td>
                     <td className="text-right">€ 49,990</td>
                     <td className="text-right">
                       <Button
@@ -229,7 +254,6 @@ const PeopleTable = () => {
                     </td>
                     <td>Paul Dickens</td>
                     <td>Communication</td>
-                    <td className="text-center">2015</td>
                     <td className="text-right">€ 69,201</td>
                     <td className="text-right">
                       <Button
@@ -262,50 +286,7 @@ const PeopleTable = () => {
                       </UncontrolledTooltip>
                     </td>
                   </tr>
-                  <tr>
-                    <td className="text-center">
-                      <div className="photo">
-                        <img
-                          alt="..."
-                          src={require("assets/img/emilyz.jpg").default}
-                        />
-                      </div>
-                    </td>
-                    <td>Manuel Rico</td>
-                    <td>Manager</td>
-                    <td className="text-center">2012</td>
-                    <td className="text-right">€ 99,201</td>
-                    <td className="text-right">
-                      <Button
-                        className="btn-link btn-icon btn-neutral"
-                        color="success"
-                        id="tooltip967557276"
-                        size="sm"
-                      >
-                        <i className="tim-icons icon-refresh-01" />
-                      </Button>
-                      <UncontrolledTooltip
-                        delay={0}
-                        target="tooltip967557276"
-                      >
-                        Tooltip on top
-                      </UncontrolledTooltip>
-                      <Button
-                        className="btn-link btn-neutral"
-                        color="danger"
-                        id="tooltip467555755"
-                        size="sm"
-                      >
-                        <i className="tim-icons icon-simple-remove" />
-                      </Button>
-                      <UncontrolledTooltip
-                        delay={0}
-                        target="tooltip467555755"
-                      >
-                        Tooltip on top
-                      </UncontrolledTooltip>
-                    </td>
-                  </tr>
+                  
                 </tbody>
               </Table>
     );

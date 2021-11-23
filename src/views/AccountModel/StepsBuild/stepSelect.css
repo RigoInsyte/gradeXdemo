@@ -1,0 +1,38 @@
+.opciones {
+	display: flex;
+	
+	align-items: center;
+	padding-bottom: 2em;
+	
+}
+
+.filtros {
+	margin-top: 1em;
+}
+
+.filtros .filtro {
+	padding: .5em 1em;
+	border: 1px solid #ccc;
+	display: grid;
+	grid-template-columns: 2fr 1fr 50px;
+	align-items: center;
+	margin-bottom: 1em;
+}
+
+.filtros .filtro .btnoptions {
+	text-align: right;
+}
+
+.filtros .filtro .btnoptions button {
+	max-width: 40px;
+}
+
+.combocriteria select {
+  border: 1px solid #1a3369;
+  /*background-color: #366db6;*/
+  background-color: #0563af;
+  color: white;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  width: 320px;
+  font-size: 15px;
+}

@@ -108,22 +108,36 @@ const OnePerson = () => {
                 </a>
               </CardHeader>
               <CardBody>
+              <CardTitle tag="h4">Andrew Mike</CardTitle>
                 <p className="card-description">
-                  The networking at Web Summit is like no other European tech
-                  conference.
-                  The networking at Web Summit is like no other European tech
-                  conference.
-                  The networking at Web Summit is like no other European tech
+                    Global Chief Information
+                    Digital Banking | Fintech
                 </p>
                 <div className="icon icon-primary">
                   <i className="fa fa-quote-right" />
                 </div>
               </CardBody>
               <CardFooter>
-                <CardTitle tag="h4">Robert Priscen</CardTitle>
-                <p className="category">@robertpriscen</p>
+                
+                <p className="category">robert----@icbc.com</p>
+                <p className="category">Phone :  +54 9 -------</p>
               </CardFooter>
             </Card>
+            <Card>
+                <CardFooter>
+                    <div className="button-container">
+                    <Button className="btn-icon btn-round" color="facebook">
+                        <i className="fab fa-facebook" />
+                    </Button>
+                    <Button className="btn-icon btn-round" color="twitter">
+                        <i className="fab fa-twitter" />
+                    </Button>
+                    <Button className="btn-icon btn-round" color="google">
+                        <i className="fab fa-google-plus" />
+                    </Button>
+                    </div>
+                </CardFooter>
+                </Card>
         </Col> 
         <Col md="5">
               <Row>
@@ -156,32 +170,20 @@ const OnePerson = () => {
 
               </Row>
               <Row>
-                <Card>
-                <CardFooter>
-                    <div className="button-container">
-                    <Button className="btn-icon btn-round" color="facebook">
-                        <i className="fab fa-facebook" />
-                    </Button>
-                    <Button className="btn-icon btn-round" color="twitter">
-                        <i className="fab fa-twitter" />
-                    </Button>
-                    <Button className="btn-icon btn-round" color="google">
-                        <i className="fab fa-google-plus" />
-                    </Button>
-                    </div>
-                </CardFooter>
-                </Card>
+
               </Row>
               <Row>
-              <label>About Me</label>
-                        <Input
-                          cols="80"
-                          defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in
-                            that two seat Lambo."
-                          placeholder="Here can be your description"
-                          rows="4"
-                          type="textarea"
+              
+              <img
+                          alt="..."
+                          src={require("assets/img/icbclogo.png").default}
+                          width= "60px"
+                          height = "40px"
                         />
+                        <br/>
+                        <h4>Industrial and Commercial Bank of China</h4>
+                        China - Banking<br/>
+                        + 10000 employees 
               </Row>
         </Col>      
         </Row>

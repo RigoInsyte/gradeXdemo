@@ -43,10 +43,9 @@ export default function FindAccountBuyer() {
     };
 
     return (
-        <div className="content">
-            FIND ACCOUNT BUYER
+       
             <Row>
-                <Col className="ml-auto mr-auto" md="8">
+                <Col className="ml-auto mr-auto" md="10">
                     <Card className="card-plain card-subcategories">
                     <CardHeader>
                     </CardHeader>
@@ -79,20 +78,7 @@ export default function FindAccountBuyer() {
                             <i className="tim-icons icon-istanbul" />
                             Companies (321 316)
                             </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink
-                            data-toggle="tab"
-                            href="#pablo"
-                            className={pageTabs === "settings" ? "active" : ""}
-                            onClick={(e) =>
-                                changeActiveTab(e, "pageTabs", "settings")
-                            }
-                            >
-                            <i className="tim-icons icon-spaceship" />
-                            Resources (next)
-                            </NavLink>
-                        </NavItem>
+                        </NavItem>                        
                         </Nav>
                         <TabContent
                         className="tab-space tab-subcategories"
@@ -103,20 +89,12 @@ export default function FindAccountBuyer() {
                         </TabPane>
                         <TabPane tabId="messages">
                             <OnePerson />
-                        </TabPane>
-                        <TabPane tabId="settings">
-                            Completely synergize resource taxing relationships via
-                            premier niche markets. Professionally cultivate one-to-one
-                            customer service with robust ideas. <br />
-                            <br />
-                            Dynamically innovate resource-leveling customer service for
-                            state of the art customer service.
-                        </TabPane>
+                        </TabPane>                        
                         </TabContent>
                     </CardBody>
                     </Card>
                 </Col>
             </Row>
-        </div>
+        
     )
 }

@@ -77,11 +77,14 @@ const Botones = () => {
                 <Col md="8">
                     <Card>
                         <CardBody>
-                        <Button  onClick={() => handleMenu(1)}>Companies</Button>
+                        <Button  onClick={() => handleMenu(1)} >Companies</Button>
                         <Button  onClick={() => handleMenu(2)}>Investement</Button>
                         <Button  onClick={() => handleMenu(3)}>Teck Stack</Button>
                         <Button  onClick={() => handleMenu(4)}>Digital Perfor.</Button>
-                        <Button  onClick={() => handleMenu(5)}>Talent</Button>
+                        <Button  onClick={() => handleMenu(5)} >Talent</Button>
+                        {/*<Button color="facebook">
+                                <i className="fab fa-facebook-square" /> Talent
+                        </Button>*/}
                              { /* <CustomInput
                                 type="switch"
                                 id="switch-3"

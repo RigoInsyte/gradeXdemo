@@ -40,7 +40,7 @@ import Ranking from "views/ranking/RankingChart"
 import Lead from "views/ranking/LeadAssessment"
 import RankginApex from "./views/ranking/RankginApex"
 import FeedAlerts from "./views/AccountModel/FeedAlerts"
-import FindAccountBuyer from "./views/AccountModel/FindAccountBuyer"
+import FindAccountBuyer from "./views/BuyerFinder/BuyerWizard"
 import BuldAccountModel from "./views/AccountModel/BuildAccountModel"
 
 const routes = [

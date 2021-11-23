@@ -6,9 +6,10 @@ import ReactWizard from "react-bootstrap-wizard";
 import { Col } from "reactstrap";
 
 // wizard steps
-import Step1 from "./StepsBuild/Step1Name.js";
-import Step2 from "./StepsBuild/StepSelect.js";
-import Step3 from "./StepsBuild/Step3Name.js";
+import Step1 from "./Step1name.js";
+import Step2 from "./StepSelected.js";   
+import Step3 from "./Step3Result.js";
+import Step4 from "./OnePerson.js"
 
 var steps = [
   {
@@ -17,18 +18,23 @@ var steps = [
     component: Step1,
   },
   {
-    stepName: "Compare",
+    stepName: "Configure",
     stepIcon: "tim-icons icon-settings-gear-63",
     component: Step2,
   },
   {
-    stepName: "Result",
-    stepIcon: "tim-icons icon-delivery-fast",
+    stepName: "Selected",
+    stepIcon: "tim-icons icon-bag-16",
     component: Step3,
+  },
+  {
+    stepName: "People",
+    stepIcon: "tim-icons icon-user-run",
+    component: Step4,
   },
 ];
 
-const BuildAccountModel = () => {
+const BuyerWizard = () => {
   return (
     <>
       <div className="content">
@@ -37,7 +43,7 @@ const BuildAccountModel = () => {
             steps={steps}
             navSteps
             validate
-            title="Account Model Creator"
+            title="Account Buyer Finder"
             headerTextCenter
             finishButtonClasses="btn-wd btn-info"
             nextButtonClasses="btn-wd btn-info"
@@ -51,4 +57,4 @@ const BuildAccountModel = () => {
   );
 };
 
-export default BuildAccountModel;
+export default BuyerWizard;

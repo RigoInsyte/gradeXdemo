@@ -129,8 +129,9 @@ export default function FeedAlerts() {
                                 },
                                 { value: "2", label: "Aws Access Failure" },
                                 { value: "3", label: "Apic Bad Credentials" },
+                                { value: "3", label: "Apic Bad Credentials" },
                             ]}
-                            placeholder="Single Select"
+                            placeholder="Single Select"                            
                             />
                             <br/>
                         </CardHeader>
