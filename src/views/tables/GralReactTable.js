@@ -76,12 +76,23 @@ const Botones = () => {
             <Row>
                 <Col md="8">
                     <Card>
+                      <CardHeader>
+                          <img src={require("assets/img/over.jpg").default}>
+                          </img>
+                      </CardHeader>
                         <CardBody>
-                        <Button  onClick={() => handleMenu(1)} >Companies</Button>
-                        <Button  onClick={() => handleMenu(2)}>Investement</Button>
-                        <Button  onClick={() => handleMenu(3)}>Teck Stack</Button>
-                        <Button  onClick={() => handleMenu(4)}>Digital Perfor.</Button>
-                        <Button  onClick={() => handleMenu(5)} >Talent</Button>
+                        <Button color="default" onClick={() => handleMenu(1)} >
+                            <i className="tim-icons icon-bank"/>  Companies
+                        </Button>
+                        <Button  onClick={() => handleMenu(2)}>
+                            <i className="tim-icons icon-money-coins"/>  Investement
+                        </Button>
+                        <Button  onClick={() => handleMenu(3)}>
+                            <i className="tim-icons icon-settings-gear-63"/>  Teck Stack</Button>
+                        <Button  onClick={() => handleMenu(4)}>
+                            <i className="tim-icons icon-tap-02"/>  Digital Perfor.</Button>
+                        <Button  onClick={() => handleMenu(5)} >
+                            <i className="tim-icons icon-badge"/>  Talent</Button>
                         {/*<Button color="facebook">
                                 <i className="fab fa-facebook-square" /> Talent
                         </Button>*/}

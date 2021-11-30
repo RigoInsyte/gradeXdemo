@@ -50,7 +50,7 @@ const Filtrar = ({ titulo, idOpcion, onRemove, onOptionChange }) => {
 
 	return(
 		<div className="filtro">
-			<h5>({idOpcion}) {titulo}</h5>
+			<h5>{titulo}</h5>
 			{(() => {
         switch (idOpcion) {
 		  case 1: case 2: case 4:

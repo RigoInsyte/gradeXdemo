@@ -42,6 +42,8 @@ import RankginApex from "./views/ranking/RankginApex"
 import FeedAlerts from "./views/AccountModel/FeedAlerts"
 import FindAccountBuyer from "./views/BuyerFinder/BuyerWizard"
 import BuldAccountModel from "./views/AccountModel/BuildAccountModel"
+import TablePerson from "./views/BuyerFinder/FindAccountBuyer"
+
 
 const routes = [
   {
@@ -61,11 +63,27 @@ const routes = [
     layout: "/admin",
   },  
   {
+    path: "/buildmodel",
+    name: "Buil Account Model",
+    rtlName: "ساحر",
+    icon: "tim-icons icon-app",
+    component: BuldAccountModel,
+    layout: "/admin",
+  },
+  {
     path: "/ranking",
     name: "Ranking",
     rtlName: "لوحة القيادة",
     icon: "tim-icons icon-chart-bar-32",
     component: RankginApex,
+    layout: "/admin",
+  }, 
+  {
+    path: "/findaccuount",
+    name: "Find Account Buyer",
+    rtlName: "لوحة القيادة",
+    icon: "tim-icons icon-single-02",
+    component: FindAccountBuyer,
     layout: "/admin",
   }, 
   {
@@ -85,21 +103,14 @@ const routes = [
     layout: "/admin",
   },  
   {
-    path: "/findaccuount",
-    name: "Find Account Buyer",
+    path: "/lpersons",
+    name: "List Persons",
     rtlName: "لوحة القيادة",
-    icon: "tim-icons icon-single-02",
-    component: FindAccountBuyer,
+    icon: "tim-icons icon-map-big",
+    component: TablePerson,
     layout: "/admin",
-  },  
-  {
-    path: "/buildmodel",
-    name: "Buil Account Model",
-    rtlName: "ساحر",
-    icon: "tim-icons icon-app",
-    component: BuldAccountModel,
-    layout: "/admin",
-  },
+  },   
+
 ];
 
 export default routes;

@@ -192,7 +192,7 @@ const Admin = (props) => {
         <AdminNavbar
           {...props}
           handleMiniClick={handleMiniClick}
-          brandText={getActiveRoute(routes)}
+          brandText="GRADE X"
           sidebarOpened={sidebarOpened}
           toggleSidebar={toggleSidebar}
         />

@@ -7,10 +7,11 @@ import {Row, Button, CardBody, Col, Card,
 import { opciones } from "./data";
 import Filtrar from "./Filtrar";
 import "./stepSelect.css";
+import Select from "react-select";
 
 const StepSelect = React.forwardRef((props, ref) => {
 
-
+	const [selecTimePos, setselecTimePos] = React.useState(null);
 	const [selectOpciones, setSelectOpciones] = useState(opciones); //Se supone que estos datos vienen de una API
 	const [selectedOpcion, setSelectedOpcion] = useState(opciones[0].id);
 
@@ -76,11 +77,17 @@ const StepSelect = React.forwardRef((props, ref) => {
 					<>
                         <Col md= "7">
 						<div className="combocriteria">							
-							<select name="op" id="op" value={selectedOpcion} onChange={handleSelectedOpcion} size="11">
+							{/*<select name="op" id="op" value={selectedOpcion} onChange={handleSelectedOpcion} size="11">
 								{
 									selectOpciones.map((opcion) => <option key={`opcion-${opcion.id}`} value={opcion.id}>{opcion.descripcion}</option>)
 								}
-							</select>
+							</select>*/}
+							<ul className="listaul">
+								{
+									selectOpciones.map((opcion) => <li key={`opcion-${opcion.id}`} className= {opcion.id===selectedOpcion ? "activa" : ""} onClick={() => setSelectedOpcion(parseInt(opcion.id, 10))}>{opcion.descripcion}</li>)
+								}
+							</ul>
+							   
 						</div>
                         </Col>
                         <Col md="2">

@@ -27,12 +27,21 @@ import "react-notification-alert/dist/animate.css";
 import "assets/scss/black-dashboard-pro-react.scss?v=1.2.0";
 import "assets/demo/demo.css";
 
+import OneUser from "./views/BuyerFinder/OnePerson";
+import PeopleTable from "./views/BuyerFinder/PeopleTable"
+
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
       <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
       <Route path="/rtl" render={(props) => <RTLLayout {...props} />} />
+      <Route path="/oneuser"> 
+            <OneUser />
+      </Route> 
+      <Route path="/peopletable"> 
+            <PeopleTable />
+      </Route> 
       <Redirect from="/" to="/admin/dashboard" />
     </Switch>
   </BrowserRouter>,

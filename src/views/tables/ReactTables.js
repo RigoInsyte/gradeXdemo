@@ -103,72 +103,63 @@ const ReactTables = () => {
 
   return (
     
-    <>
+    <div style={{overflow: "scroll"}}>
 
-      <div className="content">
-        <Col md={8} className="ml-auto mr-auto">
+        <ReactTable
+          data={grilla}
+          columns={[                    
+            {
+              Header: "Select",
+              accessor: "actions",
+              width: 100
+            },
+            {
+              Header: "ID",
+              accessor: "id",
+              width: 100
+            },
+            {
+              Header: "NAME",
+              accessor: "name",
+              width: 300
+            },
+            {
+              Header: "Applications",
+              accessor: "Applications (Count)",
+              width: 200
+            },
+            {
+              Header: "Domains",
+              accessor: "Domains (Count)",
+              width: 500
+            },    
+            {
+              Header: "Points of Presence",
+              accessor: "Points of Presence (Count)",
+              width: 500
+            },
+            {
+              Header: "Primary CDN",
+              accessor: "Primary CDN (Content Delivery) Product",
+              width: 500
+            },
+            {
+              Header: "Primary Cloud Host. Prod.",
+              accessor: "Primary Cloud Hosting Product",
+              width: 500
+            },    
+            {
+              Header: "Employee by function",
+              accessor: "Employee distribution by function)",
+              width: 200
+            },   
+                                 
+          ]}
+          defaultPageSize={10}
           
-          
-        </Col>
-        <Row className="mt-5">
-          <Col xs={12} md={12}>
-            <Card>
-              <CardBody>
-                <ReactTable
-                  data={grilla}
-                  filterable
-                  resizable={false}
-                  columns={[                    
-                    {
-                      Header: "Select",
-                      accessor: "actions",
-                    },
-                    {
-                      Header: "ID",
-                      accessor: "id",
-                    },
-                    {
-                      Header: "NAME",
-                      accessor: "name",
-                    },
-                    {
-                      Header: "Applications",
-                      accessor: "Applications (Count)",
-                    },
-                    {
-                      Header: "Domains",
-                      accessor: "Domains (Count)",
-                    },    
-                    {
-                      Header: "Points of Presence",
-                      accessor: "Points of Presence (Count)",
-                    },
-                    {
-                      Header: "Primary CDN",
-                      accessor: "Primary CDN (Content Delivery) Product",
-                    },
-                    {
-                      Header: "Primary Cloud Host. Prod.",
-                      accessor: "Primary Cloud Hosting Product",
-                    },    
-                    {
-                      Header: "Employee by function",
-                      accessor: "Employee distribution by function)",
-                    },    
-                    
+        />
 
-                  ]}
-                  defaultPageSize={10}
-                  showPaginationTop
-                  showPaginationBottom={false}
-                  className="-striped -highlight"
-                />
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </div>
-    </>
+    </div>
     
   );
 };

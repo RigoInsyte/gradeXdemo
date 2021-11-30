@@ -15,6 +15,7 @@ import {
   } from "reactstrap";
   import PeopleTable from "./PeopleTable"
   import OnePerson from "./OnePerson"
+  import CompTable from "./CompTable"
 
 export default function FindAccountBuyer() {
     const [pageTabs, setpageTabs] = React.useState("home");
@@ -43,7 +44,7 @@ export default function FindAccountBuyer() {
     };
 
     return (
-       
+       <div className="content">
             <Row>
                 <Col className="ml-auto mr-auto" md="10">
                     <Card className="card-plain card-subcategories">
@@ -88,13 +89,13 @@ export default function FindAccountBuyer() {
                             <PeopleTable />                       
                         </TabPane>
                         <TabPane tabId="messages">
-                            <OnePerson />
+                            <CompTable />
                         </TabPane>                        
                         </TabContent>
                     </CardBody>
                     </Card>
                 </Col>
             </Row>
-        
+            </div>
     )
 }

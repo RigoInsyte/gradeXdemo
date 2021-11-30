@@ -26,7 +26,13 @@ const Info = ({ empresa, criteria, no }) => {
 
     return(
         <div>
-            <h4>{data.name} ({data.id})</h4>
+            <div style={{display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1em"}}>
+            <h4>{data.name} ({data.id})</h4> 
+            <img src={require("assets/img/icbclogo.png").default} 
+            height="80px"
+            width="250px">
+                          </img>
+        </div>
             {
                 data.attributes.map((a, index) => {
                     return (

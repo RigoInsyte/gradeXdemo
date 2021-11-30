@@ -1,5 +1,6 @@
 import React, { Component, useState, useEffect } from 'react'
 import Chart from 'react-apexcharts'
+import { CardHeader, Card } from 'reactstrap';
 
 const RankginApex =() => {
 
@@ -33,7 +34,7 @@ const RankginApex =() => {
               horizontal: true, //horizontal bar chart
             },
           },
-        colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e',
+        colors: ['#0541f6', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e',
           '#f48024', '#69d2e7'
         ],
       },
@@ -109,9 +110,10 @@ const RankginApex =() => {
                     horizontal: true, //horizontal bar chart
                   },
                 },
-              colors: ['#33b2df', '#546E7A', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e',
-                '#f48024', '#69d2e7'
-              ],
+              colors: ['#0541f6', '#2d59dd', '#44bbf1', '#5aedea', '#b3e5fc',
+               '#81c784', '#87f48c', '#70f798',
+                '#6af6ec', '#b3e5fc', '#4fc3f7',
+                              ],
             },
             series: [{
               name: 'score',
@@ -185,8 +187,14 @@ const RankginApex =() => {
     }
 
   return (
+
     <div className="content">
-        
+        <Card>
+          <CardHeader>
+          <img src={require("assets/img/ranking.jpg").default}>
+                          </img>
+          </CardHeader>
+        </Card>
         <Chart options={estado.options} series={estado.series} type="bar" width={950} height={680} />
         <button onClick={getGrafico}>Refresh</button>
     </div>

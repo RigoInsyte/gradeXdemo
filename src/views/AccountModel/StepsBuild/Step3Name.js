@@ -169,7 +169,7 @@ const ejJason =
                         <CardTitle tag="h4">Percent level</CardTitle>
                     </CardHeader>
                     <CardBody>
-                        <Table responsive striped>
+                        <Table>
                         <thead className="text-primary">
                             <tr>
                             <th className="text-center">#</th>

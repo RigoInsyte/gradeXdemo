@@ -38,10 +38,50 @@ const OverCompani = () => {
           <Col className="mb-5" md="12">
             <Card>
               <CardHeader>
-                <CardTitle tag="h4">Companies - {empre}</CardTitle>
+                <Row>
+                  <Col>
+                    <CardTitle tag="h2">Companies - {empre}</CardTitle>
+                  </Col>
+                  <Col align="right">
+                  {(() => {
+                  switch (empre) {
+                  case "Vestiaire Collective":
+                      return (   
+                    <img 
+                    src="https://es.vestiairecollective.com/assets/img/home/vestiairecollective_logo.svg?v=1"
+                    width="300px"
+                    height="80px"
+                    >
+                    </img>
+                      );
+                    case "Deezer" :
+                      return(<>
+                        <img 
+                        src="https://www.elgrupoinformatico.com/static/Manuales/2019/10/deezer-logo-1300x650.jpg"
+                        width="300px"
+                        height="80px"
+                        >
+                        </img>
+                    </>);
+                    default :
+                    return (
+                      <>
+                        <img 
+                        src="https://www.payplug.com/hubfs/payplug_com/static/images/logo-payplug.png"
+                        width="300px"
+                        height="80px"
+                        >
+                        </img>
+                      
+                      </>
+                    );                                                                      
+                  }
+                  })()}
+                  </Col>
+                </Row>
               </CardHeader>
               <CardBody>
-                <Table className="tablesorter" responsive>
+                <Table className="tablesorter" >
                     <thead className="text-primary">
                         <tr>
                         <th>INFO</th>

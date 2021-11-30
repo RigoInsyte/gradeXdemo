@@ -24,8 +24,15 @@ import {
   Col,
   UncontrolledTooltip,
 } from "reactstrap";
-import OnePerson from  "./OnePerson";
+import OnePerson from  "./OnePerson.js";
 import { isConstructorDeclaration } from "typescript";
+
+import { Link } from "react-router-dom";
+
+
+
+
+const PeopleTable = () => {
 
 const handleButtonclick = () =>{
   console.log("click del botn en table");
@@ -35,11 +42,11 @@ const handleButtonclick = () =>{
   
 };
 
-
-const PeopleTable = () => {
-  return (
-
-                <Table responsive>
+  return (  
+          <div>
+            
+            <Row>
+                <Table>
                 <thead className="text-primary">
                   <tr>
                     <th className="text-center">#</th>
@@ -88,6 +95,7 @@ const PeopleTable = () => {
                     </td>
                     
                     <td className="text-right">
+                      <Link to={"/oneuser"}>
                       <Button
                         className="btn-link btn-icon"
                         color="success"
@@ -97,6 +105,7 @@ const PeopleTable = () => {
                       >
                         <i className="tim-icons icon-refresh-01" />
                       </Button>
+                      </Link>
 
                       <Button
                         className="btn-link"
@@ -200,95 +209,12 @@ const PeopleTable = () => {
                       </UncontrolledTooltip>
                     </td>
                   </tr>
-                  <tr>
-                    <td className="text-center">
-                      <div className="photo">
-                        <img
-                          alt="..."
-                          src={require("assets/img/jana.jpg").default}
-                        />
-                      </div>
-                    </td>
-                    <td>Mike Monday</td>
-                    <td>Marketing</td>
-                    <td className="text-right">€ 49,990</td>
-                    <td className="text-right">
-                      <Button
-                        className="btn-link btn-icon btn-neutral"
-                        color="success"
-                        id="tooltip932549650"
-                        size="sm"
-                      >
-                        <i className="tim-icons icon-refresh-01" />
-                      </Button>
-                      <UncontrolledTooltip
-                        delay={0}
-                        target="tooltip932549650"
-                      >
-                        Tooltip on top
-                      </UncontrolledTooltip>
-                      <Button
-                        className="btn-link btn-neutral"
-                        color="danger"
-                        id="tooltip696208424"
-                        size="sm"
-                      >
-                        <i className="tim-icons icon-simple-remove" />
-                      </Button>
-                      <UncontrolledTooltip
-                        delay={0}
-                        target="tooltip696208424"
-                      >
-                        Tooltip on top
-                      </UncontrolledTooltip>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="text-center">
-                      <div className="photo">
-                        <img
-                          alt="..."
-                          src={require("assets/img/robi.jpg").default}
-                        />
-                      </div>
-                    </td>
-                    <td>Paul Dickens</td>
-                    <td>Communication</td>
-                    <td className="text-right">€ 69,201</td>
-                    <td className="text-right">
-                      <Button
-                        className="btn-link btn-icon btn-neutral"
-                        color="success"
-                        id="tooltip188998609"
-                        size="sm"
-                      >
-                        <i className="tim-icons icon-refresh-01" />
-                      </Button>
-                      <UncontrolledTooltip
-                        delay={0}
-                        target="tooltip188998609"
-                      >
-                        Tooltip on top
-                      </UncontrolledTooltip>
-                      <Button
-                        className="btn-link btn-neutral"
-                        color="danger"
-                        id="tooltip991400757"
-                        size="sm"
-                      >
-                        <i className="tim-icons icon-simple-remove" />
-                      </Button>
-                      <UncontrolledTooltip
-                        delay={0}
-                        target="tooltip991400757"
-                      >
-                        Tooltip on top
-                      </UncontrolledTooltip>
-                    </td>
-                  </tr>
+
                   
                 </tbody>
               </Table>
+        </Row>
+      </div>
     );
 };
 

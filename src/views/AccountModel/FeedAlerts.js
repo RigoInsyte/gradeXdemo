@@ -116,6 +116,8 @@ export default function FeedAlerts() {
                         <CardHeader>
                             
                             <Select
+                            multiple
+                            native
                             className="react-select info"
                             classNamePrefix="react-select"
                             name="singleSelect"
@@ -129,7 +131,7 @@ export default function FeedAlerts() {
                                 },
                                 { value: "2", label: "Aws Access Failure" },
                                 { value: "3", label: "Apic Bad Credentials" },
-                                { value: "3", label: "Apic Bad Credentials" },
+                                { value: "3", label: "Epic Azure" },
                             ]}
                             placeholder="Single Select"                            
                             />

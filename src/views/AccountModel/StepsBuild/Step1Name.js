@@ -15,7 +15,7 @@ const Step1 = React.forwardRef((props, ref) => {
     const [firstnameState, setfirstnameState] = React.useState("");
     const [firstnameFocus, setfirstnameFocus] = React.useState("");
 
-    const [addressFocus, setaddressFocus] = React.useState("");
+    
 
     const stateFunctions = {    
         setfirstnameState: (value) => setfirstnameState(value),
@@ -95,26 +95,7 @@ const Step1 = React.forwardRef((props, ref) => {
             ) : null}
             </InputGroup>
           </Col>
-          <Col sm="10">
-          <InputGroup
-            className={classnames({
-              "input-group-focus": addressFocus,
-            })}
-          >
-            <InputGroupAddon addonType="prepend">
-              <InputGroupText>
-                <i className="tim-icons icon-paper" />
-              </InputGroupText>
-            </InputGroupAddon>
-            <Input
-              name="address"
-              placeholder="Description ( is optional)"
-              type="text"
-              onFocus={(e) => setaddressFocus(true)}
-              onBlur={(e) => setaddressFocus(false)}
-            />
-          </InputGroup>
-        </Col>
+          
       </Row>
       </>
     );

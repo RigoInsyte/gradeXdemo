@@ -26,6 +26,7 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 import { Line, Bar, Pie } from "react-chartjs-2";
+import { Link } from "react-router-dom";
 
 const OnePerson = () => {
 
@@ -94,21 +95,21 @@ const OnePerson = () => {
       };
 
   return (
-      <div>
+      <div className="content">
         <Row>
-      <Col md="5">
+           <Col md="5">
             <Card className="card-testimonial">
               <CardHeader className="card-header-avatar">
                 <a href="#pablo" onClick={(e) => e.preventDefault()}>
                   <img
                     alt="..."
                     className="img img-raised"
-                    src={require("assets/img/james.jpg").default}
+                    src={require("assets/img/tania.jpg").default}
                   />
                 </a>
               </CardHeader>
               <CardBody>
-              <CardTitle tag="h4">Andrew Mike</CardTitle>
+              <CardTitle tag="h4">Andrew Mike.</CardTitle>
                 <p className="card-description">
                     Global Chief Information
                     Digital Banking | Fintech
@@ -185,8 +186,11 @@ const OnePerson = () => {
                         China - Banking<br/>
                         + 10000 employees 
               </Row>
+              <Link to={"/peopletable"}>Back to home</Link>
+              <Link to={"/admin/lpersons"}>grid to </Link>
         </Col>      
         </Row>
+        
         </div>   
   );
 };

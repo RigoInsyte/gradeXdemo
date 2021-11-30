@@ -3,6 +3,7 @@ import Select from "react-select";
 // reactstrap components
 import {Row, CardBody, Col, Card, 
     CardHeader,
+    Button,
     Label,
     FormGroup,
     Input,
@@ -13,6 +14,8 @@ import {Row, CardBody, Col, Card,
 
 import {countries} from "../AccountModel/StepsBuild/data"
 import {idioms} from "../AccountModel/StepsBuild/data"
+import { Link } from "react-router-dom";
+
 
 const StepSelected = React.forwardRef((props, ref) => {
 
@@ -260,8 +263,14 @@ const StepSelected = React.forwardRef((props, ref) => {
           <Row>
             <Col md="12">
                 <Card>
-                <CardHeader>
+                    <CardHeader>
+                    
+                
                     <CardTitle tag="h4">Select criteria for yout model</CardTitle>
+                
+
+
+
                 </CardHeader>
                 <CardBody>
                     <Table responsive striped>
@@ -543,6 +552,11 @@ const StepSelected = React.forwardRef((props, ref) => {
                     </tbody>
                     </Table>
                 </CardBody>
+                <Link to={"/admin/lpersons"}>
+                <Button className="btn-simple" color="primary">
+                        Calculate Finder Formula
+                    </Button>
+                 </Link>
                 </Card>
             </Col>
           </Row>

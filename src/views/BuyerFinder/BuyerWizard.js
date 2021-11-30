@@ -9,7 +9,7 @@ import { Col } from "reactstrap";
 import Step1 from "./Step1name.js";
 import Step2 from "./StepSelected.js";   
 import Step3 from "./Step3Result.js";
-import Step4 from "./OnePerson.js"
+
 
 var steps = [
   {
@@ -22,16 +22,7 @@ var steps = [
     stepIcon: "tim-icons icon-settings-gear-63",
     component: Step2,
   },
-  {
-    stepName: "Selected",
-    stepIcon: "tim-icons icon-bag-16",
-    component: Step3,
-  },
-  {
-    stepName: "People",
-    stepIcon: "tim-icons icon-user-run",
-    component: Step4,
-  },
+
 ];
 
 const BuyerWizard = () => {
